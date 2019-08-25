@@ -1,43 +1,73 @@
-import React, { Component } from 'react';
+import React from "react";
 import {
-  Container, Col, Form,
-  FormGroup, Label, Input,
-  Button,FormText, FormFeedback
-} from 'reactstrap';
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBModalFooter,
+  MDBIcon,
+  MDBCardHeader,
+  MDBBtn,
+  MDBInput
+} from "mdbreact";
 
+const login = () => {
+  return (
+    <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <MDBCard>
+                <div className="header pt-3 grey lighten-2">
+                  <MDBRow className="d-flex justify-content-start">
+                    <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
+                      Log in
+                    </h3>
+                  </MDBRow>
+                </div>
+                <MDBCardBody className="mx-4 mt-4">
+                  <MDBInput label="Your email" group type="text" validate />
+                  <MDBInput
+                    label="Your password"
+                    group
+                    type="password"
+                    validate
+                    containerClass="mb-0"
+                  />
+                  <p className="font-small grey-text d-flex justify-content-end">
+                    Forgot
+                    <a
+                      href="#!"
+                      className="dark-grey-text font-weight-bold ml-1"
+                    >
+                      Password?
+                    </a>
+                  </p>
+                  <div className="text-center mb-4 mt-5">
+                    <MDBBtn
+                      color="danger"
+                      type="button"
+                      className="btn-block z-depth-2"
+                    >
+                      Log in
+                    </MDBBtn>
+                  </div>
+                  <p className="font-small grey-text d-flex justify-content-center">
+                    Don't have an account?
+                    <a
+                      href="./signup"
+                      className="dark-grey-text font-weight-bold ml-1"
+                    >
+                      Sign up
+                    </a>
+                  </p>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+  );
+};
 
-class login extends Component {
-
-  render() {
-    return (
-      <Container className="Login">
-        <h2>Log In</h2>
-        <Form className="Loginform">
-          <Col>
-            <FormGroup>
-              <Input
-                type="username"
-                name="username"
-                id="txtUsername"
-                placeholder="Username"
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Input
-                type="password"
-                name="password"
-                id="txtPassword"
-                placeholder="********"
-              />
-            </FormGroup>
-          </Col>
-          <Button>Submit</Button>
-        </Form>
-      </Container>
-    );
-  }
-}
 
 export default login;

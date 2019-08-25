@@ -1,113 +1,67 @@
-import React, { Component } from 'react';
+import React from "react";
 import {
-  Container, Col, Form,
-  FormGroup, Label, Input,
-  Button,
-} from 'reactstrap';
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBModalFooter,
+  MDBIcon,
+  MDBCardHeader,
+  MDBBtn,
+  MDBInput
+} from "mdbreact";
 
+const signup = () => {
+  return (
+    <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <MDBCard>
+                <div className="header pt-3 grey lighten-2">
+                  <MDBRow className="d-flex justify-content-start">
+                    <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
+                      Sign Up
+                    </h3>
+                  </MDBRow>
+                </div>
+                <MDBCardBody className="mx-4 mt-4">
+                <MDBInput label="First Name" group type="text" validate />
+                <MDBInput label="Last Name" group type="text" validate />
+                  <MDBInput label="Your email" group type="text" validate />
+                  <MDBInput label="Pick a username" group type="text" validate />
+                  <MDBInput
+                    label="Your password"
+                    group
+                    type="password"
+                    validate
+                    containerClass="mb-0"
+                  />
+                  <div className="text-center mb-4 mt-5">
+                    <MDBBtn
+                      color="danger"
+                      type="button"
+                      className="btn-block z-depth-2"
+                    >
+                      Sign up
+                    </MDBBtn>
+                  </div>
+                  <p className="font-small grey-text d-flex justify-content-center">
+                    Already an account?
+                    <a
+                      href="./login"
+                      className="dark-grey-text font-weight-bold ml-1"
+                    >
+                     Log-in
+                    </a>
+                  </p>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+  );
+};
 
-class signup extends Component {
-constructor(props) {
-    super(props);
-      this.state = {
-      'email': '',
-      'password': '',
-      validate: {
-        emailState: '',
-      },
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  validateEmail(e) {
-    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const { validate } = this.state
-      if (emailRex.test(e.target.value)) {
-        validate.emailState = 'has-success'
-      } else {
-        validate.emailState = 'has-danger'
-      }
-      this.setState({ validate })
-    }
-
-  handleChange = async (event) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-    await this.setState({
-      [ name ]: value,
-    });
-  }
-
-  submitForm(e) {
-    e.preventDefault();
-    console.log(`Email: ${ this.state.email }`)
-    }
-  render() {
-    return (
-      <Container className="Signup">
-        <h2>Sign up</h2>
-        <Form className="SignupForm">
-          <Col>
-            <FormGroup>
-
-              <Input
-                type="firstname"
-                name="firstname"
-                id="txtFirstName"
-                placeholder="First Name"
-              />
-            </FormGroup>
-          </Col>
-           <Col>
-           <FormGroup>
-
-             <Input
-               type="lastname"
-                name="lastname"
-                id="txtLastName"
-                placeholder="Last Name"
-                 />
-              </FormGroup>
-             </Col>
-             <Col>
-                        <FormGroup>
-
-                          <Input
-                            type="username"
-                             name="username"
-                             id="txtUsername"
-                             placeholder="Username"
-                              />
-                           </FormGroup>
-                          </Col>
-                          <Col>
-                           <FormGroup>
-
-                                        <Input
-                                          type="email"
-                                          name="email"
-                                          id="txtEmail"
-                                          placeholder="you@example.com"
-                                        />
-                                      </FormGroup>
-                                      </Col>
-          <Col>
-            <FormGroup>
-              <Input
-                type="password"
-                name="password"
-                id="txtPassword"
-                placeholder="********"
-              />
-            </FormGroup>
-          </Col>
-          <Button>Sign Up</Button>
-        </Form>
-
-      </Container>
-    );
-  }
-}
 
 export default signup;

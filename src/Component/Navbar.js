@@ -7,13 +7,12 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  Button,
+} from 'reactstrap';
 import login from './Login';
 import signup from './Signup';
 import SearchBar from './SearchProduct';
+
 
 
 
@@ -34,24 +33,18 @@ class NavbarHead extends React.Component {
   render() {
     return (
     <>
-
-
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
           <NavbarBrand href="/">Home</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            <NavItem >
-            <SearchBar/>
-
-            </NavItem>
               <NavItem>
                 <NavLink href="/shoppingcart">Shopping Cart</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/login">Login</NavLink>
-              </NavItem>
+               <NavItem>
+               <NavLink href="./login">login</NavLink>
+               </NavItem>
               <NavItem>
               <NavLink href="/signup">Sign up</NavLink>
               </NavItem>

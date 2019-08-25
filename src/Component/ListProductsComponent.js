@@ -1,7 +1,11 @@
 import React,{ Component } from 'react';
+import {Card, Button, CardImg, CardTitle, CardText,
+ CardColumns, CardSubtitle, CardBody,CardGroup } from 'reactstrap';
+ import { Grid, Row, Col } from 'react-flexbox-grid';
 import UserService from '../Service/UserService';
 import AdminService from '../Service/AdminService';
-import imageLoader from './images.js';
+import SearchBar from './SearchProduct';
+
 
 class ListProductsComponent extends Component{
   constructor(props){
@@ -16,8 +20,7 @@ class ListProductsComponent extends Component{
   }
   componentDidMount(){
     this.displayProducts();
-    const images=imageLoader();
-    this.setState({images});
+
   }
   displayProducts(){
     UserService.getAllProducts().then(
@@ -38,33 +41,41 @@ class ListProductsComponent extends Component{
 
   render() {
           return (
-              <div className="container">
-                  <div className="container">
-                      <table className="table">
-                          <thead>
-                              <tr>
-                                  <th>Name</th>
-                                  <th>Price</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              {
-                                  this.state.Products.map(
-                                      Product =>
-                                          <tr key={Product.product_ID}>
-                                              <td>{Product.proName}</td>
-                                              <td>${Product.proPrice}</td>
-                                              <td><button className="btn AddToCart"
-                                               onClick={() => this.addProduct(Product.product_ID)}>Add to cart</button></td>
-                                          </tr>
-                                  )
-                              }
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+          <>
+          <Row>
+          <SearchBar/>
+          </Row>
+
+          <Row >
+          {this.state.Products.map( Product=>
+          <Col>
+          <CardGroup style={{marginTop:"20px"}} >
+          <Card style={{width:"30rem"}}>
+          <Row class="ProductContainer" >
+          <Col  md="4" >
+           <CardImg top width="100%" src={Product.proImageURL} alt={Product.proName} />
+                     <Card key ={Product.product_ID} />
+                     </Col>
+                     <Col md="8">
+                     <CardBody>
+
+                         <CardTitle>{Product.proName}</CardTitle>
+                         <CardSubtitle>${Product.proPrice} CAD</CardSubtitle>
+                         <CardText>{Product.proDesc}</CardText>
+                         <Button>Add to Cart</Button>
+                       </CardBody>
+                   </Col>
+                   </Row>
+                   </Card>
+                   </CardGroup>
+                   </Col>
+                   )}
+                   </Row>
+                   </>
+
           )
       }
+      
 
 }
 

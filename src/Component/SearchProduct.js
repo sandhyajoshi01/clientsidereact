@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Col, Button, Form, FormGroup, Label, Input,Container } from "reactstrap";
 import ListProductsComponent from './ListProductsComponent';
 
 
@@ -23,7 +23,7 @@ class SearchBar extends Component {
         query,
         filteredData
       };
-    });
+    }, this.getData);
   };
 
   getData = () => {
@@ -48,16 +48,25 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchForm">
-        <form>
-          <input
-            placeholder="Search for..."
-            value={this.state.query}
-            onChange={this.handleInputChange}
-          />
-        </form>
-        <div>{this.state.filteredData.map(i => <p>{i.proName.toLowerCase()}</p>)}</div>
-      </div>
+    <Container className="Search">
+
+            <Form className="searchForm" >
+
+                <FormGroup>
+                  <Input
+                    type="search"
+                    name="search"
+                    id="txtSearch"
+                    placeholder="Search Product"
+                    icon="search"
+                                value={this.state.query}
+                                onChange={this.handleInputChange}
+                  />
+                  <div>{this.state.filteredData.map(i => <p>{i.proName}</p>)}</div>
+                </FormGroup>
+            </Form>
+          </Container>
+
     );
   }
 

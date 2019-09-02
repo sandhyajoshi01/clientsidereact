@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Component} from "react";
 import {
   MDBContainer,
   MDBRow,
@@ -11,9 +11,49 @@ import {
   MDBBtn,
   MDBInput
 } from "mdbreact";
+import UserService from '../Service/UserService';
+import {User} from '../Models/UserModel';
 
-const login = () => {
+class login extends Component{
+  constructor(props) {
+    super(props);
+    //redirect to home if already logged in
+    if (UserService.currentUserValue) {
+      this.props.history.push('/');
+    }
+    this.state = {
+      user: new User('', ''),
+      errorMessage: '',
+      submitted: false
+    };
+  }
+    handleChange(e){
+      const {name, value}=e.target;
+      const user= this.state.user;
+      user[name]=value;
+      this.setState({user: user});
+    }
+    handleLogin(e){
+      e.preventDefault();
+      this.setState({submitted: true});
+      const{user}=this.state;
+
+      UserService.loginUser(user)
+          .then(
+              data => {
+                this.props.history.push('/');
+              },
+              error => {
+                console.log(error);
+                this.setState({ errorMessage: "Username or password is not valid."});
+              }
+          );
+    }
+
+  render(){
+    const {user, submitted, errorMessage} = this.state;
   return (
+
     <MDBContainer>
           <MDBRow>
             <MDBCol md="6">
@@ -21,18 +61,34 @@ const login = () => {
                 <div className="header pt-3 grey lighten-2">
                   <MDBRow className="d-flex justify-content-start">
                     <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
-                      Log in
+                      Login
                     </h3>
                   </MDBRow>
                 </div>
+                {errorMessage &&
+                <div className="alert alert-danger" role="alert">
+                  <strong>Error! </strong> {errorMessage}
+                </div>
+                }
                 <MDBCardBody className="mx-4 mt-4">
-                  <MDBInput label="Your email" group type="text" validate />
+                  <div className={'form-group' + (submitted && user.username ? 'has-error': '')}>
+                    <MDBInput label=" Username" group type="text"
+                              name="username" value={user.username}
+                              onChange={(e)=>this.handleChange(e)}/>
+                    {submitted && !user.username &&
+                    <div className="alert alert-danger" role="alert">First Name is required
+                    </div>
+                    }
+                  </div>
+                  <div className={'form-group' + (submitted && user.password ? 'has-error': '')}>
                   <MDBInput
-                    label="Your password"
+                    label="Password"
                     group
                     type="password"
                     validate
                     containerClass="mb-0"
+                    name="password" value={user.password}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <p className="font-small grey-text d-flex justify-content-end">
                     Forgot
@@ -43,13 +99,15 @@ const login = () => {
                       Password?
                     </a>
                   </p>
+                  </div>
                   <div className="text-center mb-4 mt-5">
                     <MDBBtn
                       color="danger"
                       type="button"
                       className="btn-block z-depth-2"
+                      onClick={(e) => this.handleLogin(e)}
                     >
-                      Log in
+                      Login
                     </MDBBtn>
                   </div>
                   <p className="font-small grey-text d-flex justify-content-center">
@@ -68,6 +126,7 @@ const login = () => {
         </MDBContainer>
   );
 };
+}
 
 
 export default login;

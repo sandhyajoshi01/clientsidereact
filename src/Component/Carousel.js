@@ -15,19 +15,18 @@ const Carousel = () => {
       showIndicators={true}
       className="z-depth-1"
     >
-      <MDBCarouselInner className="carousel-inner ">
+      <MDBCarouselInner className="carousel-inner">
         <MDBCarouselItem itemId="1">
           <MDBView>
             <img
               className="d-block w-100"
-              src="https://upload.wikimedia.org/wikipedia/commons/2/26/Proenza_Schouler_MAC_Product.jpg"
+              src="https://www.colorbarcosmetics.com/images/xtimeless-banner-desktop-new.jpg.pagespeed.ic.wWyoNsXmLW.jpg"
               alt="First slide"
             />
-          <MDBMask overlay="black-light" />
+          <MDBMask overlay="black-slight" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">MAC eyeshadows are here!</h3>
-
+            <h3 className="h3-responsive">Perfect way to age gracefully!</h3>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="2">
@@ -40,8 +39,7 @@ const Carousel = () => {
           <MDBMask overlay="black-light" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Strong mask</h3>
-
+            <h3 className="h3-responsive"></h3>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="3">
@@ -54,35 +52,33 @@ const Carousel = () => {
           <MDBMask overlay="black-slight" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Slight Mask</h3>
-
+            <h3 className="h3-responsive"></h3>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="4">
                   <MDBView>
                     <img
                       className="d-block w-100"
-                      src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/f9902748010219.588b80d30e242.jpg"
+                      src="http://cdn3.bigcommerce.com/s-4ix8x54f/product_images/uploaded_images/dior-eyewear-ad-advertisement-campaign-spring-2014-the-impression-02.jpg?t=1425857499"
                       alt="First slide"
                     />
                   <MDBMask overlay="black-light" />
                   </MDBView>
                   <MDBCarouselCaption>
-                    <h3 className="h3-responsive">Hottest deals from NYX</h3>
+                    <h3 className="h3-responsive">Hottest deals from DIOR</h3>
                   </MDBCarouselCaption>
                 </MDBCarouselItem>
                 <MDBCarouselItem itemId="5">
                           <MDBView>
                             <img
                               className="d-block w-100"
-                              src="https://www.thetrendspotter.net/wp-content/uploads/2017/10/Designer-Watches-for-Women.jpg"
+                              src="https://www.photigy.com/school/wp-content/uploads/2018/12/4-67.jpg"
                               alt="First slide"
                             />
                           <MDBMask overlay="black-light" />
                           </MDBView>
                           <MDBCarouselCaption>
-                            <h3 className="h3-responsive">Light mask</h3>
-
+                            <h3 className="h3-responsive"></h3>
                           </MDBCarouselCaption>
                         </MDBCarouselItem>
 

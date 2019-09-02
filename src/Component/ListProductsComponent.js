@@ -12,7 +12,6 @@ class ListProductsComponent extends Component{
     super(props)
     this.state={
     Products:[],
-    Images:[],
     Message:null
     }
     this.displayProducts=this.displayProducts.bind(this);
@@ -20,7 +19,6 @@ class ListProductsComponent extends Component{
   }
   componentDidMount(){
     this.displayProducts();
-
   }
   displayProducts(){
     UserService.getAllProducts().then(
@@ -33,7 +31,7 @@ class ListProductsComponent extends Component{
   deleteProduct(ID){
   AdminService.deleteProduct(ID).then(
   response=>{
-  this.setState({message:`Delete of Product ${ID} successful!`});
+  this.setState({message:`Delete of Product ${ID} successful!`})
   this.displayProducts();
   }
   )

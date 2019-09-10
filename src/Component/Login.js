@@ -13,10 +13,14 @@ import {
 } from "mdbreact";
 import UserService from '../Service/UserService';
 import {User} from '../Models/UserModel';
+import { faSignInAlt,faUserAlt,faKey} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class login extends Component{
   constructor(props) {
     super(props);
+
     //redirect to home if already logged in
     if (UserService.currentUserValue) {
       this.props.history.push('/');
@@ -24,30 +28,39 @@ class login extends Component{
     this.state = {
       user: new User('', ''),
       errorMessage: '',
-      submitted: false
+      submitted: false,
+      message:''
     };
   }
     handleChange(e){
-      const {name, value}=e.target;
+      const {name, value}=e.target;   // target element<tags>
       const user= this.state.user;
       user[name]=value;
       this.setState({user: user});
+      // console.log(e); // events can be seen in the browser console
     }
     handleLogin(e){
       e.preventDefault();
       this.setState({submitted: true});
       const{user}=this.state;
 
+      if (!(user.username && user.password)) {
+        return;
+      }
+
       UserService.loginUser(user)
           .then(
               data => {
                 this.props.history.push('/');
+                this.setState({message:"You are logged in."})
+                console.log(this.state);
               },
               error => {
                 console.log(error);
                 this.setState({ errorMessage: "Username or password is not valid."});
               }
           );
+      console.log(this.state);
     }
 
   render(){
@@ -62,6 +75,7 @@ class login extends Component{
                   <MDBRow className="d-flex justify-content-start">
                     <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
                       Login
+                      <FontAwesomeIcon icon={faSignInAlt} fixedWidth/>
                     </h3>
                   </MDBRow>
                 </div>
@@ -72,15 +86,17 @@ class login extends Component{
                 }
                 <MDBCardBody className="mx-4 mt-4">
                   <div className={'form-group' + (submitted && user.username ? 'has-error': '')}>
+                    <FontAwesomeIcon icon={faUserAlt} size="sm"/>
                     <MDBInput label=" Username" group type="text"
                               name="username" value={user.username}
-                              onChange={(e)=>this.handleChange(e)}/>
+                              onChange={(e)=>this.handleChange(e)} />
                     {submitted && !user.username &&
-                    <div className="alert alert-danger" role="alert">First Name is required
+                    <div className="alert alert-danger" role="alert">Username is required
                     </div>
                     }
                   </div>
                   <div className={'form-group' + (submitted && user.password ? 'has-error': '')}>
+                    <FontAwesomeIcon icon={faKey} size="sm" />
                   <MDBInput
                     label="Password"
                     group
@@ -88,8 +104,12 @@ class login extends Component{
                     validate
                     containerClass="mb-0"
                     name="password" value={user.password}
-                    onChange={(e)=>this.handleChange(e)}
-                  />
+                    onChange={(e)=>this.handleChange(e)}/>
+                    {submitted && !user.username &&
+                    <div className="alert alert-danger" role="alert">Password is required
+                    </div>
+                    }
+
                   <p className="font-small grey-text d-flex justify-content-end">
                     Forgot
                     <a

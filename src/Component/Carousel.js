@@ -2,9 +2,6 @@ import React from "react";
 import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from
 "mdbreact";
 import  './Carousel.css';
-
-
-
 const Carousel = () => {
   return (
     <MDBContainer >
@@ -60,7 +57,7 @@ const Carousel = () => {
                     <img
                       className="d-block w-100"
                       src="http://cdn3.bigcommerce.com/s-4ix8x54f/product_images/uploaded_images/dior-eyewear-ad-advertisement-campaign-spring-2014-the-impression-02.jpg?t=1425857499"
-                      alt="First slide"
+                      alt="Fourth slide"
                     />
                   <MDBMask overlay="black-light" />
                   </MDBView>
@@ -73,7 +70,7 @@ const Carousel = () => {
                             <img
                               className="d-block w-100"
                               src="https://www.photigy.com/school/wp-content/uploads/2018/12/4-67.jpg"
-                              alt="First slide"
+                              alt="Fifth slide"
                             />
                           <MDBMask overlay="black-light" />
                           </MDBView>

@@ -5,6 +5,7 @@ import {Card, Button, CardImg, CardTitle, CardText,
 import UserService from '../Service/UserService';
 import AdminService from '../Service/AdminService';
 import SearchBar from './SearchProduct';
+import cart from './Cart';
 
 
 class ListProductsComponent extends Component{
@@ -15,6 +16,7 @@ class ListProductsComponent extends Component{
     Message:null
     }
     this.displayProducts=this.displayProducts.bind(this);
+    this.addToCart=this.addToCart.bind(this);
 
   }
   componentDidMount(){
@@ -28,14 +30,11 @@ class ListProductsComponent extends Component{
       }
     )
   }
-  deleteProduct(ID){
-  AdminService.deleteProduct(ID).then(
-  response=>{
-  this.setState({message:`Delete of Product ${ID} successful!`})
-  this.displayProducts();
-  }
-  )
-  }
+
+  addToCart(Product) {
+        localStorage.setItem('currentProduct', JSON.stringify(Product));
+        this.props.history.push('/cart/'+Product.id);
+    }
 
   render() {
           return (
@@ -43,24 +42,25 @@ class ListProductsComponent extends Component{
           <Row>
           <SearchBar/>
           </Row>
-
-          <Row >
-          {this.state.Products.map( Product=>
+          <Row>
+          {this.state.Products.map(Product=>
           <Col>
-          <CardGroup style={{marginTop:"20px"}} >
+          <CardGroup style={{marginTop:"20px",marginBottom:"20px",marginRight:"10px"}} >
           <Card style={{width:"30rem"}}>
-          <Row class="ProductContainer" >
+          <Row className="ProductContainer" >
           <Col  md="4" >
-           <CardImg top width="100%" src={Product.proImageURL} alt={Product.proName} />
+           <CardImg top width="100%" src={Product.proImageURL} alt={Product.proName} style={{maxHeight:"350px"}}/>
+
                      <Card key ={Product.product_ID} />
                      </Col>
                      <Col md="8">
                      <CardBody>
 
                          <CardTitle>{Product.proName}</CardTitle>
+                         <CardTitle>{Product.proBrand}</CardTitle>
                          <CardSubtitle>${Product.proPrice} CAD</CardSubtitle>
                          <CardText>{Product.proDesc}</CardText>
-                         <Button>Add to Cart</Button>
+                         <Button onClick={() => this.addToCart(Product)}>Add to Cart</Button>
                        </CardBody>
                    </Col>
                    </Row>
@@ -70,11 +70,8 @@ class ListProductsComponent extends Component{
                    )}
                    </Row>
                    </>
-
           )
       }
-      
-
 }
 
 export default ListProductsComponent;

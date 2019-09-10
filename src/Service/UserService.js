@@ -20,7 +20,14 @@ class UserService {
   return axios.post(API_URL+'/signup', user);
   }
   loginUser(user){
-    return axios.post(API_URL+'/login', user);
+    return axios.get(API_URL+'/login')
+        .then(response =>{
+            if(response.data.code == 200) {
+                console.log("Login successful");
+            }
+            localStorage.setItem('currentUser',JSON.stringify(response.data));
+            currentUserSubject.next(response.data);
+        });
   }
 
   logoutUser(user){

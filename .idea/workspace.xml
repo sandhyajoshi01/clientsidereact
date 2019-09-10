@@ -3,15 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Signup2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,18 +23,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>babel</find>
-      <find>signupFirstName</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\src\Component</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +46,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../reactClientSideCourseraShoppingsite/clientreactcoursera" />
     <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
@@ -108,6 +97,14 @@
       <workItem from="1567208184638" duration="7417000" />
       <workItem from="1567273211703" duration="6822000" />
       <workItem from="1567358219367" duration="19411000" />
+      <workItem from="1567470386824" duration="15982000" />
+      <workItem from="1567541500328" duration="11594000" />
+      <workItem from="1567613647823" duration="3277000" />
+      <workItem from="1567640639702" duration="3574000" />
+      <workItem from="1567703268132" duration="11068000" />
+      <workItem from="1568057143365" duration="5881000" />
+      <workItem from="1568072111198" duration="2763000" />
+      <workItem from="1568125993279" duration="1816000" />
     </task>
     <servers />
   </component>

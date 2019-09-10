@@ -14,13 +14,13 @@ import {
   DropdownMenu
 } from 'reactstrap';
 import  user from '../Icons/user-solid.svg';
-import cart from '../Icons/shopping-cart-solid.svg';
-import home from '../Icons/home-solid.svg';
+import faShoppingCart from '../Icons/shopping-cart-solid.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Navbar.css';
-import login from './Login';
-import signup from './Signup2';
 import SearchBar from './SearchProduct';
-
+import {faSignInAlt, faUserPlus, faHome, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import UserService from "../Service/UserService";
+import {User} from "../Models/UserModel";
 
 class NavbarHead extends React.Component {
   constructor(props) {
@@ -28,8 +28,10 @@ class NavbarHead extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
+      user: new User('', ''),
       isOpen: false,
-      isLoggedIn:false
+      isLoggedIn:false,
+      message:''
     };
     this.handleLoginClick=this.handleLoginClick.bind(this);
     this.handleLogoutClick=this.handleLogoutClick.bind(this);
@@ -44,7 +46,15 @@ class NavbarHead extends React.Component {
       this.setState({isLoggedIn:true})
     }
     handleLogoutClick(){
-      this.setState({isLoggedIn:false})
+      this.setState({isLoggedIn:false});
+      const {user} =this.state.user;
+      UserService.logoutUser(user)
+          .then(
+              data => {
+                this.props.history.push('/');
+                this.setState({ message: "You are logged out."});
+              }
+          );
     }
   render(){
       const isLoggedIn =this.state.isLoggedIn;
@@ -53,30 +63,34 @@ class NavbarHead extends React.Component {
     <>
       <div>
         <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
-          <NavbarBrand href="/" className="icons">< img src={home}/>
+          <NavbarBrand href="/" className="icons">
+            <FontAwesomeIcon icon={faHome}/>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem className="ml-lg-0">
-                <img src={cart}/>
+              <NavItem className="icons">
+                <img src={faShoppingCart}></img>
               </NavItem>
-              <NavItem>
-                <NavLink href="/shoppingcart" >Cart </NavLink>
+              <NavItem className="icons">
+                <NavLink href="/cart"> Cart </NavLink>
               </NavItem>
-                 <UncontrolledDropdown nav inNavbar>
+                 <UncontrolledDropdown nav inNavbar className="m-auto">
                    <DropdownToggle nav caret className="m-auto">
                        <img src={user}></img>
                    </DropdownToggle>
-                   <DropdownMenu right>
+                   <DropdownMenu right className="ml-auto">
                      <DropdownItem href="/login">
-                       Log-in
+                       Login
+                       <FontAwesomeIcon icon={faSignInAlt} fixedWidth/>
                      </DropdownItem>
-                     <DropdownItem>
+                     <DropdownItem  onClick={this.handleLogoutClick} href="/">
                        Log-out
+                       <FontAwesomeIcon icon={faSignOutAlt} fixedWidth/>
                      </DropdownItem>
                      <DropdownItem href="/signup">
                        Sign-up
+                       <FontAwesomeIcon icon={faUserPlus} fixedWidth/>
                      </DropdownItem>
                      <DropdownItem divider />
                    </DropdownMenu>

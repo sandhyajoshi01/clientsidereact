@@ -26,7 +26,7 @@ class login extends Component{
       this.props.history.push('/');
     }
     this.state = {
-      user: new User('', ''),
+      user: new User('', '','','',''),
       errorMessage: '',
       submitted: false,
       message:''

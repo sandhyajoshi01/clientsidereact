@@ -37,5 +37,9 @@ class UserService {
           currentUserSubject.next(null);
         });
   }
+  buyProducts(transaction) {
+        return axios.post(API_URL + "checkout", JSON.stringify(transaction)
+          );
+    }
 }
 export default new UserService();

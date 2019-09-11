@@ -3,16 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Signup2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,16 +66,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.Signup2.js">
-    <configuration name="Signup2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Signup2.js" working-dir="$PROJECT_DIR$/src/Component">
+  <component name="RunManager">
+    <configuration name="Signup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Signup.js" working-dir="$PROJECT_DIR$/src/Component">
       <method v="2" />
     </configuration>
-    <configuration name="Signup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Signup.js" working-dir="$PROJECT_DIR$/src/Component">
+    <configuration name="Signup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/Component/Signup.js" working-dir="$PROJECT_DIR$/src/Component">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.Signup2.js" />
+        <item itemvalue="Node.js.Signup.js" />
       </list>
     </recent_temporary>
   </component>
@@ -104,7 +103,9 @@
       <workItem from="1567703268132" duration="11068000" />
       <workItem from="1568057143365" duration="5881000" />
       <workItem from="1568072111198" duration="2763000" />
-      <workItem from="1568125993279" duration="1816000" />
+      <workItem from="1568125993279" duration="18222000" />
+      <workItem from="1568218664433" duration="8405000" />
+      <workItem from="1568230350290" duration="4075000" />
     </task>
     <servers />
   </component>

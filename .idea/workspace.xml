@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Guards/AuthGuard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Models/Order.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Checkout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/User.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Transaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/AdminService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/AdminService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +23,13 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +74,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.ListProductsComponent.js">
+    <configuration name="ListProductsComponent.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/Component/ListProductsComponent.js" working-dir="$PROJECT_DIR$/src/Component">
+      <method v="2" />
+    </configuration>
     <configuration name="Signup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="Signup.js" working-dir="$PROJECT_DIR$/src/Component">
       <method v="2" />
     </configuration>
@@ -75,6 +86,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.ListProductsComponent.js" />
         <item itemvalue="Node.js.Signup.js" />
       </list>
     </recent_temporary>
@@ -105,7 +117,26 @@
       <workItem from="1568072111198" duration="2763000" />
       <workItem from="1568125993279" duration="18222000" />
       <workItem from="1568218664433" duration="8405000" />
-      <workItem from="1568230350290" duration="4075000" />
+      <workItem from="1568230350290" duration="6489000" />
+      <workItem from="1574120330906" duration="624000" />
+      <workItem from="1575426723966" duration="2988000" />
+      <workItem from="1580426787023" duration="44000" />
+      <workItem from="1580427046609" duration="8888000" />
+      <workItem from="1581379921718" duration="1404000" />
+      <workItem from="1581560936535" duration="734000" />
+      <workItem from="1581988632695" duration="55000" />
+      <workItem from="1585260342999" duration="3663000" />
+      <workItem from="1585442305624" duration="597000" />
+      <workItem from="1585601114835" duration="14975000" />
+      <workItem from="1585686847251" duration="9116000" />
+      <workItem from="1585781604409" duration="9644000" />
+      <workItem from="1585864151590" duration="5686000" />
+      <workItem from="1586380639092" duration="1053000" />
+      <workItem from="1586390323493" duration="1190000" />
+      <workItem from="1587594006346" duration="7695000" />
+      <workItem from="1588116385861" duration="1907000" />
+      <workItem from="1588367256635" duration="5001000" />
+      <workItem from="1588377096078" duration="14858000" />
     </task>
     <servers />
   </component>

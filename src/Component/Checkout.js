@@ -1,17 +1,22 @@
-import React,{Component} from "react";
+import React, {Component, useReducer} from "react";
 import {MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBInput, MDBRow} from "mdbreact";
 import UserService from "../Service/UserService";
 import {User} from "../Models/UserModel";
+import {Transaction} from "../Models/Transaction";
 
 class checkout extends Component{
     constructor(props){
         super(props);
-        this.state={ user : new User('','','','','','','',
-            '',''),
+        this.state={
+            user: new User(),
+            //products: this.props.product,
             submitted : false,
-            errorMessage:''
+            errorMessage:'',
+            id: this.props.match.params.id,
+            product: JSON.parse(localStorage.getItem('currentProduct')),
         }
     }
+
     handleChange(e){
         const {name, value}=e.target;   // target element<tags>
         const user= this.state.user;
@@ -19,16 +24,29 @@ class checkout extends Component{
         this.setState({user: user});
         // console.log(e); // events can be seen in the browser console
     }
+
+    componentDidMount() {
+        UserService.currentUser.subscribe(data => {
+            //console.log(data)
+            this.setState({
+                user: data
+            })
+        });
+    }
     placeOrder(e){
         e.preventDefault();
         this.setState({submitted: true});
-        const{user}=this.state;
+        const user= this.state.user;
 
         if (!(user.firstname && user.lastname && user.address && user.creditCardNumber&& user.creditCardExpiry && user.creditCardSecurity)) {
             return;
         }
+        debugger
+        console.log(this.state.product)
+        let transaction = new Transaction(this.state.user,this.state.product)
+        console.log(this.state.product)
 
-        UserService.buyProducts(user)
+        UserService.buyProducts(transaction)
             .then(
                 data => {
                     this.props.history.push('/');
@@ -118,7 +136,6 @@ class checkout extends Component{
                                 <p className="font-small grey-text d-flex justify-content-center">
                                     Want to add more items to your cart?
                                     <a
-                                        href="./cart"
                                         className="dark-grey-text font-weight-bold ml-1"
                                     >
                                         Your Cart

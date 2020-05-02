@@ -69,7 +69,7 @@ const Carousel = () => {
                           <MDBView>
                             <img
                               className="d-block w-100"
-                              src="https://www.photigy.com/school/wp-content/uploads/2018/12/4-67.jpg"
+                              src="https://www.opi.com/sites/default/files/styles/paragraph_full_width_image/public/purples.jpg?itok=UI2f_UP5"
                               alt="Fifth slide"
                             />
                           <MDBMask overlay="black-light" />

@@ -20,9 +20,11 @@ class signup extends Component{
   constructor(props){
    super(props);
    this.state={
-   user : new User('','','','',''),
+   user : new User('','','','','','','',
+       '',''),
    submitted : false,
-   errorMessage:''
+   errorMessage :'',
+   successMessage :''
    };
  }
    handleChange(e){
@@ -33,7 +35,7 @@ class signup extends Component{
    }
   handleRegister(e){
       e.preventDefault();
-	  this.setState({submitted: true});
+	  this.setState({submitted: true, successMessage: "User created, please log in!"});
       const{user}=this.state;
 
       UserService.registerUser(user)
@@ -56,7 +58,7 @@ class signup extends Component{
  }
 
   render(){
-  const {user, submitted, errorMessage} = this.state;
+  const {user, submitted, errorMessage,successMessage} = this.state;
     return (
       <MDBContainer>
             <MDBRow>
@@ -74,6 +76,11 @@ class signup extends Component{
 						<div className="alert alert-danger" role="alert">
 						<strong>Error! </strong> {errorMessage}
 						</div>
+					   }
+					   {submitted &&
+                       <div className="alert alert-danger" role="alert">
+                           <strong>Success! </strong> {successMessage}
+                       </div>
 					   }
                   <MDBCardBody className="mx-4 mt-4" >
 				  <div className={'form-group' + (submitted && user.firstname ? 'has-error': '')}>

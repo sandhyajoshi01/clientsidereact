@@ -7,24 +7,25 @@ import signup from './Component/Signup';
 import cart from './Component/Cart';
 import checkout from './Component/Checkout';
 
+
 function App() {
-  return (
-<>
- <Router>
-          <div>
-           <Switch>
-           <Route exact path='/' component={Home} />
-           <Route path='/login' component={login} />
-           <Route path='/signup' component={signup} />
-           <Route path='/cart' component={cart} />
-           <Route path='/checkout' component={checkout}/>
-           </Switch>
-           </div>
-           </Router>
+    return (
+        <>
+            <Router>
+                <div>
+                    <Switch>
+                        <Route exact path='/' component={Home}/>
+                        <Route path='/login' component={login}/>
+                        <Route path='/signup' component={signup}/>
+                        <Route path='/cart' component={cart}/>
+                        <Route path='/checkout' component={checkout}/>
+                    </Switch>
+                </div>
+            </Router>
 
-       </>
+        </>
 
-  );
+    );
 
 }
 

@@ -28,78 +28,70 @@ class NavbarHead extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      user: new User('', ''),
+      user: new User('', '','','',''),
       isOpen: false,
       isLoggedIn:false,
       message:''
     };
     this.handleLoginClick=this.handleLoginClick.bind(this);
     this.handleLogoutClick=this.handleLogoutClick.bind(this);
-
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
-    };
-    handleLoginClick(){
-      this.setState({isLoggedIn:true})
-    }
-    handleLogoutClick(){
-      this.setState({isLoggedIn:false});
-      const {user} =this.state.user;
-      UserService.logoutUser(user)
-          .then(
-              data => {
-                this.props.history.push('/');
-                this.setState({ message: "You are logged out."});
-              }
-          );
-    }
+  };
+  handleLoginClick(){
+    debugger
+    this.setState({isLoggedIn:true})
+  }
+  handleLogoutClick(){
+    this.setState({isLoggedIn:false});
+    const {user} =this.state.user;
+    UserService.logoutUser(user)
+        .then(
+            data => {
+              this.props.history.push('/');
+              this.setState({ message: "You are logged out."});
+            }
+        );
+  }
   render(){
-      const isLoggedIn =this.state.isLoggedIn;
-      let Link;
+    const isLoggedIn =this.state.isLoggedIn;
     return (
-    <>
-      <div>
-        <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
-          <NavbarBrand href="/" className="icons">
-            <FontAwesomeIcon icon={faHome}/>
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem className="icons">
-                <img src={faShoppingCart}></img>
-              </NavItem>
-              <NavItem className="icons">
-                <NavLink href="/cart"> Cart </NavLink>
-              </NavItem>
-                 <UncontrolledDropdown nav inNavbar className="m-auto">
-                   <DropdownToggle nav caret className="m-auto">
-                       <img src={user}></img>
-                   </DropdownToggle>
-                   <DropdownMenu right className="ml-auto">
-                     <DropdownItem href="/login">
-                       Login
-                       <FontAwesomeIcon icon={faSignInAlt} fixedWidth/>
-                     </DropdownItem>
-                     <DropdownItem  onClick={this.handleLogoutClick} href="/">
-                       Log-out
-                       <FontAwesomeIcon icon={faSignOutAlt} fixedWidth/>
-                     </DropdownItem>
-                     <DropdownItem href="/signup">
-                       Sign-up
-                       <FontAwesomeIcon icon={faUserPlus} fixedWidth/>
-                     </DropdownItem>
-                     <DropdownItem divider />
-                   </DropdownMenu>
-                 </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-      </>
+        <>
+          <div>
+            <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
+              <NavbarBrand href="/" className="icons">
+                <FontAwesomeIcon icon={faHome}/>
+              </NavbarBrand>
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                  <UncontrolledDropdown nav inNavbar className="m-auto">
+                    <DropdownToggle nav caret className="m-auto">
+                    </DropdownToggle>
+                    <DropdownMenu right className="ml-auto">
+                      {(!isLoggedIn)?
+                        <DropdownItem href="/login" onClick={this.handleLoginClick}>
+                        Login
+                        </DropdownItem>
+                        :
+                        <DropdownItem onClick={this.handleLogoutClick} href="/">
+                        Logout
+                        </DropdownItem>
+                      }
+                      <DropdownItem href="/signup">
+                        Sign-up
+                      </DropdownItem>
+                      <DropdownItem divider />
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </Nav>
+              </Collapse>
+            </Navbar>
+          </div>
+        </>
     );
 
   }

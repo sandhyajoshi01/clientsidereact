@@ -54,7 +54,7 @@ class login extends Component{
           .then(
               data => {
                 debugger
-                console.log(data)  ///data undefined aairachha
+                console.log(data)
                 this.props.history.push('/');
                 this.setState({message:"You are logged in."})
                 console.log(this.state.message);

@@ -17,6 +17,7 @@ class UserService {
     return axios.get(API_URL+'/products') ;
   }
   registerUser(user){
+      debugger
   return axios.post(API_URL+'/signup', JSON.stringify(user),
       {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
@@ -25,7 +26,7 @@ class UserService {
           authorization: 'Basic ' + btoa(user.username + ':' + user.password)
       };
       debugger
-    return axios.get(API_URL+'/login', {headers: headers})
+      return axios.get(API_URL+'/login', {headers: headers})
         .then(response =>{
             console.log(response)
             if(response.data.code == 200) {
@@ -46,7 +47,7 @@ class UserService {
         });
   }
   buyProducts(transaction) {
-        return axios.post(API_URL + "/purchase", JSON.stringify(transaction),
+        return axios.post(API_URL + '/purchase', JSON.stringify(transaction),
             {headers: {"Content-Type":"application/json; charset=UTF-8"}}
           );
   }

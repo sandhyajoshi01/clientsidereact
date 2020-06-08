@@ -5,24 +5,66 @@ import UserService from '../Service/UserService';
 import SearchBar from './SearchProduct';
 import {withRouter} from 'react-router-dom';
 import Cart from './Cart'
+import checkout from "./Checkout";
+import {User} from "../Models/UserModel";
+import {count} from "rxjs/operators";
 
 class ListProductsComponent extends Component{
     constructor(props) {
         super(props)
         this.state = {
             Products: [],
-            quantity: 1,
+            //quantity: 0,
             cart: [],
-            Message: null
+            checkoutButton: false,
+            Message: null,
+            Total:0,
+            currentUser: new User()
         }
         this.displayProducts = this.displayProducts.bind(this);
         this.addToCart = this.addToCart.bind(this);
         this.removeFromCart = this.removeFromCart.bind(this);
+        this.checkout=this.checkout.bind(this);
+        this.totalPrice=this.totalPrice.bind(this);
+        this.pushtocart=this.pushtocart.bind(this);
     }
+
 
     componentDidMount() {
         this.displayProducts();
+        UserService.currentUser.subscribe(data => {
+            console.log(data)
+            this.setState({
+                currentUser: data
+            })
+        });
     }
+    checkout(state, callback) {
+        //console.log("cart right now as props",this.props.cart)
+        //console.log("cart to be sent as props",this.state.cart)
+
+        if (!this.state.currentUser) {
+            this.setState({Message: "You should login in to checkout"});
+        }
+        else {
+            debugger
+            let cartarray = [...this.state.cart]
+            console.log("access quantity",cartarray.splice(-1))
+            console.log(cartarray.splice(-1)[0])
+            this.props.history.push('/checkout',{cartprop:this.state.cart,totalPrice:this.state.Total})
+        }
+        /*let order = new Order(this.state.currentUser,this.state.cart)
+        UserService.saveOrder(order)
+            .then(
+                data=>{
+                    this.props.history.push('/checkout')
+                },
+                error => {
+                    this.setState({errorMessage: "Order not saved"})
+                }
+            )*/
+    }
+
 
     displayProducts() {
         UserService.getAllProducts().then(
@@ -30,6 +72,7 @@ class ListProductsComponent extends Component{
                 this.setState({Products: response.data})
             }
         )
+
     }
 
     addToCart = (Product) => {
@@ -39,28 +82,60 @@ class ListProductsComponent extends Component{
 
             cart.forEach(cp => {
                 if (cp.product_ID === Product.product_ID) {
-                    cp.count += 1;
+                    //cp.qty= this.getQuantityForItem;
                     productAlreadyInCart = true;
                 }
             });
 
             if (!productAlreadyInCart) {
-                cart.push({...Product, count: 1});
+                cart.push({...Product,qty:1});
             }
+
             localStorage.setItem("cartItems", JSON.stringify(cart));
             return {cart: cart};
         });
+
     };
+
     removeFromCart = (product) => {
         this.setState(state=> {
             const cartItem = this.state.cart.filter(a => a.product_ID !== product.product_ID);
             localStorage.setItem("cartItem", JSON.stringify(cartItem));
             return {cart: cartItem};
-
         });
+
     };
+    totalPrice=(AllTotal)=>{
+        //debugger
+        this.setState({Total:AllTotal},()=>{console.log(this.state.Total)})
+    }
+    getQuantityForItem = (quantity,productID) =>{
+        debugger
+        //this.setState({quantity:quantity});
+        //this.state.cart.slice(-1).quantity=quantity;
+        //this.setState({quantity:quantity})
+        this.setState(state => {
+            const cart = state.cart;
+
+            cart.forEach(cp => {
+                if (cp.product_ID ===productID) {
+                    cp.qty= quantity
+                }
+            });
+            localStorage.setItem("cartItems", JSON.stringify(cart));
+            return {cart: cart};
+        });
+
+    }
+    pushtocart(quantity){
+        this.state.cart.push({...this.state.cart,quantity})
+    }
+
+
 
     render() {
+        const {cart}= this.state.cart;
+        let {ether}=0;
         return (
             <>
                 <Row>
@@ -83,7 +158,7 @@ class ListProductsComponent extends Component{
 
                                                 <CardTitle>{Product.proName}</CardTitle>
                                                 <CardTitle>{Product.proBrand}</CardTitle>
-                                                <CardSubtitle>CA ${Product.proPrice}</CardSubtitle>
+                                                <CardSubtitle> {ether = (Product.proPrice *0.0031).toFixed(2)} Eth </CardSubtitle>
                                                 {Product.proStock > 0 ?
                                                     <Button outline color="secondary" onClick={() => this.addToCart(Product)}>
                                                         Add to Cart</Button>
@@ -98,17 +173,34 @@ class ListProductsComponent extends Component{
                             </CardGroup>
                         </Col>
                     )}
+
                     <div className="col-md-3">
+                        {/*{this.state.cart.map(item=>(*/}
                         <Cart
                             cart={this.state.cart}
+                            value={0}
                             removeFromCart = {this.removeFromCart}
+                            totalPrice = {this.totalPrice}
+                            getQuantityForItem={this.getQuantityForItem}
                         />
+
+                        {this.state.cart.length>0 ?
+                            <div>
+                                <div>
+                                <checkout cartprop={this.state.cart} totalPrice={this.state.Total}/>
+                                </div>
+                                <h4><Button outline color="secondary" onClick={this.checkout}>Checkout</Button></h4>
+
+                            </div>
+                            : null
+
+                        }
                     </div>
+
                 </Row>
 
                     </>
                 )
                 }
                 }
-
-                export default withRouter(ListProductsComponent);
+export default withRouter(ListProductsComponent);

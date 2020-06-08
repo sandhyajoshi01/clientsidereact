@@ -1,15 +1,14 @@
 export class User {
-  constructor(firstname,lastname,username, email,password,address,creditCardNumber,creditCardExpiry,creditCardSecurity,id, role){
-   this.firstname = firstname;
+  constructor(firstname,lastname,username, email,password,billingAddress,etherAddress,id, token,role){
+    this.firstname = firstname;
     this.lastname = lastname;
     this.username = username;
     this.email=email;
     this.password = password;
-    this.address = address;
-    this.creditCardNumber = creditCardNumber;
-    this.creditCardExpiry = creditCardExpiry;
-    this.creditCardSecurity = creditCardSecurity;
+    this.billingAddress = billingAddress;
+    this.etherAddress = etherAddress;
     this.id = id;
+    this.token= token;
     this.role = role;
   }
 }

@@ -15,29 +15,30 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Products: [],
-            inputValue: "",
+            inputValue: this.props.value,
             errorMessage:"",
+            Total:0,
             id: this.props.match.params.id,
             product: JSON.parse(localStorage.getItem('currentProduct')),
             currentUser: new User()
         }
         this._handleUpdate = this._handleUpdate.bind(this);
-        //this._reset = this._reset.bind(this);
-        this.checkout = this.checkout.bind(this);
+        this._reset = this._reset.bind(this);
+        //this.checkout = this.checkout.bind(this);
+        //this.totalPrice= this.totalPrice.bind(this);
+
     }
 
     //for the quantity part
-    _handleUpdate(e) {
-        if (e.target.value >= 0) {
+    _handleUpdate(e){
             this.setState({inputValue: e.target.value});
-        }
+            //this.props.getQuantityForItem(this.state.inputValue+1);
     }
 
-//for the quantity part
-    /*_reset() {
+
+    _reset() {
         this.setState({inputValue: ""});
-    }*/
+    }
 
     componentDidMount() {
         UserService.currentUser.subscribe(data => {
@@ -48,32 +49,11 @@ class Cart extends Component {
         });
     }
 
-    checkout(state, callback) {
-        console.log(this.state.product)
-
-        if (!this.state.currentUser) {
-            this.setState({errorMessage: "You should login in to checkout"});
-        }
-        else{
-            let order = new Order(this.state.currentUser,this.state.product)
-            UserService.saveOrder(order)
-                .then(
-                    data=>{
-                        this.props.history.push('/checkout')
-                    },
-                    error => {
-                        this.setState({errorMessage: "Order not saved"})
-                    }
-                )
-        }
-
-    }
 
     render() {
-        const {cart,currentUser} = this.props;
-        const {errorMessage,product} =this.state
-        let Totalforitem = 0;
-        let AllTotal = 0;
+        const {cart,errorMessage,totalPrice} = this.props;
+        let Totalforitem,AllTotal = 0;
+        //let quantity= target.value;
         return (
             <>
                 <div className="alert alert-info">
@@ -86,38 +66,41 @@ class Cart extends Component {
                         </div>
                         }
                         {cart.map(itemincart => (
+                            
                             <div>
                                 <Card style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
                                     <CardImg top width="50%" src={itemincart.proImageURL}
                                              alt={itemincart.proName}
                                              style={{maxHeight: "200px", maxWidth: "200px"}}/>
                                     <CardBody style={{width: "40rem"}} key={itemincart.product_ID}>
-                                        <CardTitle>Name: {itemincart.proName}</CardTitle>
-                                        <CardTitle>Brand: {itemincart.proBrand}</CardTitle>
-                                        <CardSubtitle>CA ${itemincart.proPrice}</CardSubtitle>
+                                        <CardTitle>{itemincart.proName}</CardTitle>
+                                        <CardTitle>{itemincart.proBrand}</CardTitle>
+                                        <CardSubtitle>{itemincart.proPrice*0.0031} Eth</CardSubtitle>
                                         <div>
                                             <input type="number" value={this.state.inputValue}
                                                    onChange={this._handleUpdate}
+                                                   /*{()=>this.props.getQuantityForItem(this.state.inputValue,itemincart.product_ID)}*/
                                                    step="any"
                                                    placeholder="Quantity" style={{width: "100px"}}/>
+
                                         </div>
                                         <div>
-                                            <h6>SubTotal: CA
-                                                ${Totalforitem = this.state.inputValue * itemincart.proPrice}</h6>
+                                            <h6>SubTotal:{Totalforitem =
+                                                (this.state.inputValue * itemincart.proPrice*0.0031)} Eth </h6>
                                             <h6><Button outline color="secondary"
                                                         onClick={()=>this.props.removeFromCart(itemincart)}>Remove</Button></h6>
                                         </div>
                                         <div style={{display: "None"}}>{AllTotal += Totalforitem}</div>
+
                                     </CardBody>
 
                                 </Card>
 
                             </div>))
                         }
-                        <div className="commonContainer">
-                            <checkout product={this.state.product}/>
-                            <h4>Total: CA ${AllTotal} </h4>
-                            <h4><Button outline color="secondary" onClick={this.checkout}>Checkout</Button></h4>
+                        <div className="commonContainer" >
+                            {AllTotal>0?<h4>Total: {AllTotal.toFixed(3)} Eth</h4>:null}
+                            <Button outline color="secondary" onClick={()=>this.props.totalPrice(AllTotal)}> Show total price </Button>
                         </div>
                     </div>
                     }

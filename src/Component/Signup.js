@@ -20,8 +20,7 @@ class signup extends Component{
   constructor(props){
    super(props);
    this.state={
-   user : new User('','','','','','','',
-       '',''),
+   user : new User('','','','','','',''),
    submitted : false,
    errorMessage :'',
    successMessage :''
@@ -33,11 +32,18 @@ class signup extends Component{
    user[name]=value;
    this.setState({user: user});
    }
+
   handleRegister(e){
+      debugger
       e.preventDefault();
-	  this.setState({submitted: true, successMessage: "User created, please log in!"});
+	  this.setState({submitted: true});
       const{user}=this.state;
 
+      if(!(user.firstname && user.lastname && user.username && user.email && user.password)){
+          return;
+      }
+
+      debugger
       UserService.registerUser(user)
       .then(
 	  data => {

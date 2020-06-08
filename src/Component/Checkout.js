@@ -1,8 +1,11 @@
-import React, {Component, useReducer} from "react";
+import React, {Component, useContext} from "react";
 import {MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBInput, MDBRow} from "mdbreact";
+import {withRouter} from 'react-router-dom';
 import UserService from "../Service/UserService";
 import {User} from "../Models/UserModel";
 import {Transaction} from "../Models/Transaction";
+import Web3 from "web3";
+
 
 class checkout extends Component{
     constructor(props){
@@ -13,8 +16,13 @@ class checkout extends Component{
             submitted : false,
             errorMessage:'',
             id: this.props.match.params.id,
-            product: JSON.parse(localStorage.getItem('currentProduct')),
+            ethereumMessage:'',
+            accounts:'',
+            web3InUse:'',
+            //product: JSON.parse(localStorage.getItem('currentProduct')),
+            //cart:JSON.parse(localStorage.getItem('cart'))
         }
+        this.placeOrder= this.placeOrder.bind(this);
     }
 
     handleChange(e){
@@ -22,44 +30,57 @@ class checkout extends Component{
         const user= this.state.user;
         user[name]=value;
         this.setState({user: user});
-        // console.log(e); // events can be seen in the browser console
     }
 
     componentDidMount() {
+        window.addEventListener('load', async () => {
+            debugger
+            const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
+            this.setState({web3InUse: web3})
+            const network = await web3.eth.net.getNetworkType();
+            console.log(network)
+            const accounts = await web3.eth.getAccounts()
+            this.setState({accounts:accounts[0]})
+        })
+
         UserService.currentUser.subscribe(data => {
             //console.log(data)
             this.setState({
                 user: data
             })
         });
+
+
     }
+
     placeOrder(e){
         e.preventDefault();
         this.setState({submitted: true});
         const user= this.state.user;
-
-        if (!(user.firstname && user.lastname && user.address && user.creditCardNumber&& user.creditCardExpiry && user.creditCardSecurity)) {
+        const currentDateTime = new Date();
+        user.etherAddress = this.state.accounts;
+        if (!(user.firstname && user.lastname && user.billingAddress && user.etherAddress)) {
             return;
         }
-        debugger
-        console.log(this.state.product)
-        let transaction = new Transaction(this.state.user,this.state.product)
-        console.log(this.state.product)
+        const paymentAddress="0x5378fa11529725cCC491bB6708f9E2F06a1639d5";
+        const amtToPay= this.props.location.state.totalPrice;
+        this.state.web3InUse.eth.sendTransaction({
+            from: user.etherAddress,
+            to: paymentAddress,
+            value: this.state.web3InUse.utils.toWei(amtToPay.toString(), 'ether')
+        }, (err, transactionId) => {
+            if  (err) {
+                this.setState({ethereumMessage:"Payment failed!"})
+                console.log('Payment failed', err)
 
-        UserService.buyProducts(transaction)
-            .then(
-                data => {
-                    this.props.history.push('/');
-                    this.setState({message:"Your item(s) will be delivered to your address in 2-3 business days"})
-                    console.log(this.state);
-                },
-                error => {
-                    console.log(error);
-                    this.setState({ errorMessage: "Your information is not valid."});
-                }
-            );
-        console.log(this.state);
+            } else {
+                this.setState({ethereumMessage:"Payment succeessful!"})
+                console.log('Payment successful', transactionId)
+            }
+        })
+        this.props.history.push('/')
     }
+
     render(){
         const {user, submitted, errorMessage} = this.state;
         return (
@@ -86,40 +107,21 @@ class checkout extends Component{
                                     </div>
                                     }
                                 </div>
-                                <div className={'form-group' + (submitted && user.address ? 'has-error': '')}>
-                                    <MDBInput label="Address" group type="text"
-                                              name="address" value={user.address}
+                                <div className={'form-group' + (submitted && user.billingAddress ? 'has-error': '')}>
+                                    <MDBInput label="Billing Address" group type="text"
+                                              name="billingAddress" value={user.billingAddress}
                                               onChange={(e)=>this.handleChange(e)}/>
-                                    {submitted && !user.address &&
-                                    <div className="alert alert-danger" role="alert"> Address is required
+                                    {submitted && !user.billingAddress &&
+                                    <div className="alert alert-danger" role="alert"> Billing Address is required
                                     </div>
                                     }
                                 </div>
-                                <div className={'form-group' + (submitted && user.creditCardNumber ? 'has-error': '')}>
-                                    <MDBInput label="Credit Card number" group type="text"
-                                              name="creditCardNumber" value={user.creditCardNumber}
+                                <div className={'form-group' + (submitted && user.etherAddress ? 'has-error': '')}>
+                                    <MDBInput label="Ether Address" group type="text"
+                                              name="etherAddress" value={user.etherAddress}
                                               onChange={(e)=>this.handleChange(e)}/>
-                                    {submitted && !user.creditCardNumber &&
-                                    <div className="alert alert-danger" role="alert"> Credit card number is required
-                                    </div>
-                                    }
-                                </div>
-                                <div className={'form-group' + (submitted && user.creditCardExpiry ? 'has-error': '')}>
-                                    <MDBInput label="Credit Card Valid till" group type="text"
-                                              name="creditCardExpiry" value={user.creditCardExpiry}
-                                              onChange={(e)=>this.handleChange(e)}/>
-                                    {submitted && !user.creditCardExpiry &&
-                                    <div className="alert alert-danger" role="alert"> Credit card expiry date is required
-                                    </div>
-                                    }
-                                </div>
-                                <div className={'form-group' + (submitted && user.creditCardSecurity ? 'has-error': '')}>
-
-                                    <MDBInput label="credit card security number" group type="text"
-                                              name="creditCardSecurity" value={user.creditCardSecurity}
-                                              onChange={(e)=>this.handleChange(e)}/>
-                                    {submitted && !user.creditCardSecurity &&
-                                    <div className="alert alert-danger" role="alert">Security number is required
+                                    {submitted && !user.etherAddress &&
+                                    <div className="alert alert-danger" role="alert"> Ether Address is required
                                     </div>
                                     }
                                 </div>
@@ -133,14 +135,14 @@ class checkout extends Component{
                                         Place Order
                                     </MDBBtn>
                                 </div>
-                                <p className="font-small grey-text d-flex justify-content-center">
+                                {/*<p className="font-small grey-text d-flex justify-content-center">
                                     Want to add more items to your cart?
                                     <a
                                         className="dark-grey-text font-weight-bold ml-1"
                                     >
                                         Your Cart
                                     </a>
-                                </p>
+                                </p>*/}
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
@@ -150,4 +152,4 @@ class checkout extends Component{
     };
 
 }
-export default checkout;
+export default withRouter(checkout);

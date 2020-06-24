@@ -13,12 +13,7 @@ import {
   DropdownItem,
   DropdownMenu
 } from 'reactstrap';
-import  user from '../Icons/user-solid.svg';
-import faShoppingCart from '../Icons/shopping-cart-solid.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Navbar.css';
-import SearchBar from './SearchProduct';
-import {faSignInAlt, faUserPlus, faHome, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import UserService from "../Service/UserService";
 import {User} from "../Models/UserModel";
 
@@ -63,7 +58,7 @@ class NavbarHead extends React.Component {
           <div>
             <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
               <NavbarBrand href="/" className="icons">
-                <FontAwesomeIcon icon={faHome}/>
+                <h5>Sask Shopping cart</h5>
               </NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
@@ -72,17 +67,23 @@ class NavbarHead extends React.Component {
                     <DropdownToggle nav caret className="m-auto">
                     </DropdownToggle>
                     <DropdownMenu right className="ml-auto">
-                      {(!isLoggedIn)?
-                        <DropdownItem href="/login" onClick={this.handleLoginClick}>
+
+                        <DropdownItem href="/login" >
                         Login
                         </DropdownItem>
-                        :
+
                         <DropdownItem onClick={this.handleLogoutClick} href="/">
                         Logout
                         </DropdownItem>
-                      }
+
                       <DropdownItem href="/signup">
                         Sign-up
+                      </DropdownItem>
+                      <DropdownItem href="/usercontrol">
+                        Set Permissions
+                      </DropdownItem>
+                      <DropdownItem href="/purchasehistory">
+                        User Purchase History
                       </DropdownItem>
                       <DropdownItem divider />
                     </DropdownMenu>

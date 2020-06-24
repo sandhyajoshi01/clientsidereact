@@ -6,6 +6,8 @@ import login from './Component/Login';
 import signup from './Component/Signup';
 import cart from './Component/Cart';
 import checkout from './Component/Checkout';
+import usercontrol from "./Component/UserControl";
+import PurchaseHistory from "./Component/PurchaseHistory";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
                         <Route path='/signup' component={signup}/>
                         <Route path='/cart' component={cart}/>
                         <Route path='/checkout' component={checkout}/>
+                        <Route path='/usercontrol'component={usercontrol}/>
+                        <Route path='/purchasehistory' component={PurchaseHistory}/>
                     </Switch>
                 </div>
             </Router>

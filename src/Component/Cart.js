@@ -23,7 +23,7 @@ class Cart extends Component {
             currentUser: new User()
         }
         this._handleUpdate = this._handleUpdate.bind(this);
-        this._reset = this._reset.bind(this);
+        //this._reset = this._reset.bind(this);
         //this.checkout = this.checkout.bind(this);
         //this.totalPrice= this.totalPrice.bind(this);
 
@@ -31,14 +31,14 @@ class Cart extends Component {
 
     //for the quantity part
     _handleUpdate(e){
-            this.setState({inputValue: e.target.value});
-            //this.props.getQuantityForItem(this.state.inputValue+1);
+        if(e.target.value>0){this.setState({inputValue: e.target.value});}
+        //this.props.getQuantityForItem(this.state.inputValue+1);
     }
 
 
-    _reset() {
+   /* _reset() {
         this.setState({inputValue: ""});
-    }
+    }*/
 
     componentDidMount() {
         UserService.currentUser.subscribe(data => {
@@ -100,7 +100,7 @@ class Cart extends Component {
                         }
                         <div className="commonContainer" >
                             {AllTotal>0?<h4>Total: {AllTotal.toFixed(3)} Eth</h4>:null}
-                            <Button outline color="secondary" onClick={()=>this.props.totalPrice(AllTotal)}> Show total price </Button>
+                            <Button outline color="secondary" onClick={()=>this.props.totalPrice(AllTotal)}> Confirm purchase </Button>
                         </div>
                     </div>
                     }

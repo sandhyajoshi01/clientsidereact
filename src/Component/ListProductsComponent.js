@@ -26,7 +26,7 @@ class ListProductsComponent extends Component{
         this.removeFromCart = this.removeFromCart.bind(this);
         this.checkout=this.checkout.bind(this);
         this.totalPrice=this.totalPrice.bind(this);
-        this.pushtocart=this.pushtocart.bind(this);
+        //this.pushtocart=this.pushtocart.bind(this);
     }
 
 
@@ -40,17 +40,11 @@ class ListProductsComponent extends Component{
         });
     }
     checkout(state, callback) {
-        //console.log("cart right now as props",this.props.cart)
-        //console.log("cart to be sent as props",this.state.cart)
-
         if (!this.state.currentUser) {
             this.setState({Message: "You should login in to checkout"});
         }
         else {
-            debugger
-            let cartarray = [...this.state.cart]
-            console.log("access quantity",cartarray.splice(-1))
-            console.log(cartarray.splice(-1)[0])
+            //debugger
             this.props.history.push('/checkout',{cartprop:this.state.cart,totalPrice:this.state.Total})
         }
         /*let order = new Order(this.state.currentUser,this.state.cart)
@@ -106,11 +100,10 @@ class ListProductsComponent extends Component{
 
     };
     totalPrice=(AllTotal)=>{
-        //debugger
         this.setState({Total:AllTotal},()=>{console.log(this.state.Total)})
     }
     getQuantityForItem = (quantity,productID) =>{
-        debugger
+        //debugger
         //this.setState({quantity:quantity});
         //this.state.cart.slice(-1).quantity=quantity;
         //this.setState({quantity:quantity})
@@ -127,11 +120,9 @@ class ListProductsComponent extends Component{
         });
 
     }
-    pushtocart(quantity){
+    /*pushtocart(quantity){
         this.state.cart.push({...this.state.cart,quantity})
-    }
-
-
+    }*/
 
     render() {
         const {cart}= this.state.cart;
@@ -139,7 +130,7 @@ class ListProductsComponent extends Component{
         return (
             <>
                 <Row>
-                    <SearchBar/>
+                    {/*<SearchBar/>*/}
                 </Row>
                 <Row>
                     {this.state.Products.map(Product =>

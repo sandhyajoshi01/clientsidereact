@@ -2,25 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Component/CartContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Component/web3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Component/UserControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Checkout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Role.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Transaction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +48,10 @@
     </option>
   </component>
   <component name="ProjectId" id="1Q6xiTj3unPR8RhIb4a2ZBmKBi6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -66,18 +63,6 @@
       <recent name="C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\src\Icons" />
       <recent name="C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\public\Assets" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Node.js.ListProductsComponent.js">
     <configuration name="ListProductsComponent.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/Component/ListProductsComponent.js" working-dir="$PROJECT_DIR$/src/Component">
@@ -159,20 +144,21 @@
       <workItem from="1590969889833" duration="9514000" />
       <workItem from="1591035094989" duration="55128000" />
       <workItem from="1591401750399" duration="2267000" />
+      <workItem from="1591653682300" duration="43722000" />
+      <workItem from="1592942954265" duration="636000" />
+      <workItem from="1592945245029" duration="17519000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -191,6 +177,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

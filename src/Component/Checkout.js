@@ -19,6 +19,7 @@ class checkout extends Component{
             ethereumMessage:'',
             accounts:'',
             web3InUse:'',
+            transMessage:''
             //product: JSON.parse(localStorage.getItem('currentProduct')),
             //cart:JSON.parse(localStorage.getItem('cart'))
         }
@@ -37,9 +38,12 @@ class checkout extends Component{
             debugger
             const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
             this.setState({web3InUse: web3})
+            console.log("web3",web3)
             const network = await web3.eth.net.getNetworkType();
             console.log(network)
+
             const accounts = await web3.eth.getAccounts()
+            // const accounts = await web3.eth.accounts[0]
             this.setState({accounts:accounts[0]})
         })
 
@@ -76,6 +80,25 @@ class checkout extends Component{
             } else {
                 this.setState({ethereumMessage:"Payment succeessful!"})
                 console.log('Payment successful', transactionId)
+                const transaction = new Transaction(user,transactionId)
+                UserService.buyProducts(transaction)
+                    .then(
+                        data => {
+                            this.setState({transMessage:"transaction saved!"})
+                        },
+                        error => {
+                            if(error.response.status === 409){
+                                this.setState({
+                                    transMessage: "transaction not saved!"
+                                });
+                            }else{
+                                this.setState({
+                                    transMessage: "Unexpected error occurred"
+                                });
+                            }
+                        }
+                    );
+
             }
         })
         this.props.history.push('/')
@@ -117,8 +140,8 @@ class checkout extends Component{
                                     }
                                 </div>
                                 <div className={'form-group' + (submitted && user.etherAddress ? 'has-error': '')}>
-                                    <MDBInput label="Ether Address" group type="text"
-                                              name="etherAddress" value={user.etherAddress}
+                                    <MDBInput label="Ether Address: " group type="text"
+                                              name="etherAddress" value={this.state.accounts}
                                               onChange={(e)=>this.handleChange(e)}/>
                                     {submitted && !user.etherAddress &&
                                     <div className="alert alert-danger" role="alert"> Ether Address is required

@@ -16,10 +16,19 @@ class UserService {
   getAllProducts(){
     return axios.get(API_URL+'/products') ;
   }
+  getAllTransactionHash(user){
+      return axios.get(API_URL+'/purchasehistory', JSON.stringify(user),
+          {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+
+  }
   registerUser(user){
-      debugger
   return axios.post(API_URL+'/signup', JSON.stringify(user),
       {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+  }
+  updateUser(user){
+      return axios.put(API_URL+'/updateUser', JSON.stringify(user),
+          {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+
   }
   loginUser(user){
       const headers = {
@@ -47,7 +56,7 @@ class UserService {
         });
   }
   buyProducts(transaction) {
-        return axios.post(API_URL + '/purchase', JSON.stringify(transaction),
+        return axios.post(API_URL + '/savetransaction', JSON.stringify(transaction),
             {headers: {"Content-Type":"application/json; charset=UTF-8"}}
           );
   }

@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Component/UserControl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Component/ContractHistory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Models/Contracts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Checkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/LoginControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/LoginControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Transaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/UserControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/UserControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,12 +56,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../reactClientSideCourseraShoppingsite/clientreactcoursera" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\src\Models" />
       <recent name="C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\src\Icons" />
       <recent name="C:\Users\Devi\Desktop\comIT\newestAfterCrash\frontendreactShoppingSite\frontendreactshoppingsite\public\Assets" />
     </key>
@@ -146,7 +151,10 @@
       <workItem from="1591401750399" duration="2267000" />
       <workItem from="1591653682300" duration="43722000" />
       <workItem from="1592942954265" duration="636000" />
-      <workItem from="1592945245029" duration="17519000" />
+      <workItem from="1592945245029" duration="42534000" />
+      <workItem from="1593133901264" duration="2573000" />
+      <workItem from="1593299837182" duration="8979000" />
+      <workItem from="1593313443477" duration="8574000" />
     </task>
     <servers />
   </component>

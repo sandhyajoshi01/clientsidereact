@@ -8,6 +8,7 @@ import cart from './Component/Cart';
 import checkout from './Component/Checkout';
 import usercontrol from "./Component/UserControl";
 import PurchaseHistory from "./Component/PurchaseHistory";
+import ContractHistory from "./Component/ContractHistory";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                         <Route path='/checkout' component={checkout}/>
                         <Route path='/usercontrol'component={usercontrol}/>
                         <Route path='/purchasehistory' component={PurchaseHistory}/>
+                        <Route path='/contracthistory' component={ContractHistory}/>
                     </Switch>
                 </div>
             </Router>

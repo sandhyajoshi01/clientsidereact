@@ -35,7 +35,6 @@ class checkout extends Component{
 
     componentDidMount() {
         window.addEventListener('load', async () => {
-            debugger
             const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
             this.setState({web3InUse: web3})
             console.log("web3",web3)

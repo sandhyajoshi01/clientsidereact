@@ -41,7 +41,6 @@ class login extends Component{
       // console.log(e); // events can be seen in the browser console
     }
     handleLogin(e){
-    debugger
       e.preventDefault();
       this.setState({submitted: true});
       const{user}=this.state;
@@ -53,7 +52,6 @@ class login extends Component{
       UserService.loginUser(user)
           .then(
               data => {
-                debugger
                 console.log(data)
                 this.props.history.push('/');
                 this.setState({message:"You are logged in."})

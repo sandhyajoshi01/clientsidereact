@@ -17,7 +17,7 @@ const Carousel = () => {
           <MDBView>
             <img
               className="d-block w-100"
-              src="https://www.colorbarcosmetics.com/images/xtimeless-banner-desktop-new.jpg.pagespeed.ic.wWyoNsXmLW.jpg"
+              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbz-anti-aging-eye-cream-index1-1564420942.jpg"
               alt="First slide"
             />
           <MDBMask overlay="black-slight" />

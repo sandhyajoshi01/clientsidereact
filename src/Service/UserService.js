@@ -16,25 +16,35 @@ class UserService {
   getAllProducts(){
     return axios.get(API_URL+'/products') ;
   }
-  getAllTransactionHash(user){
-      return axios.get(API_URL+'/purchasehistory', JSON.stringify(user),
+  getAllTransactionHash(user_id){
+      return axios.get(API_URL+'/purchasehistory/'+user_id,
           {headers: {"Content-Type":"application/json; charset=UTF-8"}});
-
   }
+
   registerUser(user){
   return axios.post(API_URL+'/signup', JSON.stringify(user),
       {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
+
   updateUser(user){
       return axios.put(API_URL+'/updateUser', JSON.stringify(user),
           {headers: {"Content-Type":"application/json; charset=UTF-8"}});
-
   }
+
+  saveContract(contract){
+      return axios.post(API_URL+'/savecontracts', JSON.stringify(contract),
+          {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+  }
+
+  getAllContractHash(user_id){
+      return axios.get(API_URL+'/contracthistory/'+user_id,
+          {headers: {"Content-Type":"application/json; charset=UTF-8"}});
+  }
+
   loginUser(user){
       const headers = {
           authorization: 'Basic ' + btoa(user.username + ':' + user.password)
       };
-      debugger
       return axios.get(API_URL+'/login', {headers: headers})
         .then(response =>{
             console.log(response)
@@ -49,16 +59,12 @@ class UserService {
 
   logoutUser(user){
       //remove and unsubscribe
-    return axios.post(API_URL+'/logout',{})
-        .then(response=> {
-          localStorage.removeItem('currentUser');
-          currentUserSubject.next(null);
-        });
+      localStorage.removeItem('currentUser');
+      currentUserSubject.next(null);
   }
   buyProducts(transaction) {
         return axios.post(API_URL + '/savetransaction', JSON.stringify(transaction),
-            {headers: {"Content-Type":"application/json; charset=UTF-8"}}
-          );
+            {headers: {"Content-Type":"application/json; charset=UTF-8"}});
   }
   saveOrder(order){
       return axios.post(API_URL+"/saveorder",JSON.stringify(order),

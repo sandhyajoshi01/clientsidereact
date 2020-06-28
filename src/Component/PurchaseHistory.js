@@ -1,44 +1,39 @@
 import React, {Component} from "react";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Badge, CardGroup
+    Card,CardBody,
+    CardTitle, CardSubtitle,CardGroup
 } from 'reactstrap';
-import {User} from '../Models/UserModel';
 import UserService from "../Service/UserService";
 import {Col, Row} from "react-flexbox-grid";
-import {Transaction} from "../Models/Transaction";
-import {debounce} from "rxjs/operators";
+import NavbarHead from "./Navbar";
 
 
 class PurchaseHistory extends Component {
     constructor(props) {
         super(props);
+        if(!UserService.currentUserValue){
+            this.props.history.push('/');
+            return;
+        }
         this.state = {
             message: "",
-            currentUser: new User(),
+            currentUser: UserService.currentUserValue,
             transactions: []
         }
         this.getTransactions= this.getTransactions.bind(this);
     }
 
     componentDidMount() {
-
-        UserService.currentUser.subscribe(loggedindata => {
-            this.setState({
-                currentUser: loggedindata
-            })
-        });
-
+        this.getTransactions()
     }
-    getTransactions(loggedinuser){
-        debugger
-        UserService.getAllTransactionHash(loggedinuser)
+
+    getTransactions(){
+        const userid = this.state.currentUser.user_id
+        UserService.getAllTransactionHash(userid)
             .then(
-                data => {
-                    debugger
-                    console.log(" tr data",data)
-                    this.setState({transactions: data, message: "transactions displayed!"})
-                    this.props.history.push('/');
+                response => {
+                    console.log(" tr response.data",response.data)
+                    this.setState({transactions: response.data, message: "transactions displayed!"})
                 },
                 error => {
                     this.setState({message: "error occurred!"})
@@ -50,20 +45,25 @@ class PurchaseHistory extends Component {
 
     render() {
         return (
+            <>
+            <div><NavbarHead/></div>
             <div className="alert alert-info">
-                {console.log("in render",this.state.currentUser)}
-                {this.getTransactions(this.state.currentUser)}
-                {console.log('in render tr',this.state.transactions)}
-
+                {/*{console.log('this.state.transactions.data',this.state.transactions)}*/}
+                {this.state.transactions ?
+                    <h5>Click on the purchase-transaction hash to view details</h5>: null}
                 {this.state.transactions.map(transaction =>
                     <Col>
                         <CardGroup style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
-                            <Card style={{width: "30rem"}}>
+                            <Card style={{width: "20rem"}}>
                                 <Row className="ProductContainer">
-                                    <Card key={transaction.trID}/>
+                                    <Card key={transaction.trid}/>
                                     <Col md="8">
                                         <CardBody>
-                                            <CardTitle>{transaction.transaction_hash}</CardTitle>
+                                            <CardTitle>
+                                                <a href={'https://ropsten.etherscan.io/tx/'+transaction.transactionHash}>
+                                                    {transaction.transactionHash}
+                                                    </a>
+                                                </CardTitle>
                                         </CardBody>
                                     </Col>
                                 </Row>
@@ -72,6 +72,7 @@ class PurchaseHistory extends Component {
                     </Col>
                 )}
             </div>
+            </>
         );
 
     }

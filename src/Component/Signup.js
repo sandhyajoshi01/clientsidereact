@@ -34,7 +34,6 @@ class signup extends Component{
    }
 
   handleRegister(e){
-      debugger
       e.preventDefault();
 	  this.setState({submitted: true});
       const{user}=this.state;
@@ -42,8 +41,6 @@ class signup extends Component{
       if(!(user.firstname && user.lastname && user.username && user.email && user.password)){
           return;
       }
-
-      debugger
       UserService.registerUser(user)
       .then(
 	  data => {

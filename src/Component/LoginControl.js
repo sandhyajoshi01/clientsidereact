@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import {Nav, Navbar, NavItem, NavLink} from "reactstrap";
+import NavbarHead from './Navbar';
 
 
 class LoginControl extends Component{

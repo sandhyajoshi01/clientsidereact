@@ -16,12 +16,12 @@ import {
 import './Navbar.css';
 import UserService from "../Service/UserService";
 import {User} from "../Models/UserModel";
+import login from "./Login";
+
 
 class NavbarHead extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
       user: new User('', '','','',''),
       isOpen: false,
@@ -30,6 +30,7 @@ class NavbarHead extends React.Component {
     };
     this.handleLoginClick=this.handleLoginClick.bind(this);
     this.handleLogoutClick=this.handleLogoutClick.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
   toggle() {
     this.setState({
@@ -37,22 +38,23 @@ class NavbarHead extends React.Component {
     });
   };
   handleLoginClick(){
-    debugger
     this.setState({isLoggedIn:true})
+    //this.props.history.push('/login')
   }
   handleLogoutClick(){
-    this.setState({isLoggedIn:false});
     const {user} =this.state.user;
     UserService.logoutUser(user)
         .then(
             data => {
               this.props.history.push('/');
-              this.setState({ message: "You are logged out."});
+              this.setState({ message: "You are logged out.",isLoggedIn:false});
             }
         );
+
   }
   render(){
     const isLoggedIn =this.state.isLoggedIn;
+    //console.log(isLoggedIn)
     return (
         <>
           <div>
@@ -61,35 +63,43 @@ class NavbarHead extends React.Component {
                 <h5>Sask Shopping cart</h5>
               </NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
-              <Collapse isOpen={this.state.isOpen} navbar>
+              {/*<Collapse isOpen={this.state.isOpen} navbar>*/}
                 <Nav className="ml-auto" navbar>
                   <UncontrolledDropdown nav inNavbar className="m-auto">
                     <DropdownToggle nav caret className="m-auto">
                     </DropdownToggle>
                     <DropdownMenu right className="ml-auto">
+                      {/*{!isLoggedIn ?*/}
+                          <div>
 
-                        <DropdownItem href="/login" >
-                        Login
-                        </DropdownItem>
-
+                          <DropdownItem onClick={this.handleLoginClick} href="/login">
+                            Login
+                          </DropdownItem>
+                          <DropdownItem href="/signup">
+                            Sign-up
+                          </DropdownItem>
+                          </div>
+                        {/*:*/}
                         <DropdownItem onClick={this.handleLogoutClick} href="/">
                         Logout
                         </DropdownItem>
+                      {/*}*/}
 
-                      <DropdownItem href="/signup">
-                        Sign-up
-                      </DropdownItem>
+
                       <DropdownItem href="/usercontrol">
-                        Set Permissions
+                        Set Permission
                       </DropdownItem>
                       <DropdownItem href="/purchasehistory">
                         User Purchase History
                       </DropdownItem>
+                        <DropdownItem href="/contracthistory">
+                            View Contract History
+                        </DropdownItem>
                       <DropdownItem divider />
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Nav>
-              </Collapse>
+              {/*</Collapse>*/}
             </Navbar>
           </div>
         </>

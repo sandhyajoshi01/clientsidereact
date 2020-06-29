@@ -6,6 +6,7 @@ import {
 import UserService from "../Service/UserService";
 import {Col, Row} from "react-flexbox-grid";
 import NavbarHead from "./Navbar";
+import './Navbar.css';
 
 
 class PurchaseHistory extends Component {
@@ -45,15 +46,14 @@ class PurchaseHistory extends Component {
 
     render() {
         return (
-            <>
-            <div><NavbarHead/></div>
-            <div className="alert alert-info">
-                {/*{console.log('this.state.transactions.data',this.state.transactions)}*/}
+            <div className="container" backgroundColor="text-muted">
+                <div><NavbarHead/></div>
+                <div className="alert alert-info">
                 {this.state.transactions ?
-                    <h5>Click on the purchase-transaction hash to view details</h5>: null}
+                    <h6>Click on the purchase-transaction hash to view details</h6>: null}
                 {this.state.transactions.map(transaction =>
                     <Col>
-                        <CardGroup style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
+                        <CardGroup style={{marginTop: "10px", marginBottom: "10px", marginRight: "10px"}}>
                             <Card style={{width: "20rem"}}>
                                 <Row className="ProductContainer">
                                     <Card key={transaction.trid}/>
@@ -72,7 +72,7 @@ class PurchaseHistory extends Component {
                     </Col>
                 )}
             </div>
-            </>
+            </div>
         );
 
     }

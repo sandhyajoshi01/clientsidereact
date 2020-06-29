@@ -6,6 +6,7 @@ import {
 import UserService from "../Service/UserService";
 import {Col, Row} from "react-flexbox-grid";
 import NavbarHead from "./Navbar";
+import './Navbar.css';
 
 
 class ContractHistory extends Component {
@@ -45,12 +46,12 @@ class ContractHistory extends Component {
 
     render() {
         return (
-            <>
+            <div className="container" backgroundColor="text-muted">
                 <div><NavbarHead/></div>
-                <div className="alert alert-info">
+                <div className="alert alert-info" >
                     {/*{console.log('this.state.transactions.data',this.state.transactions)}*/}
                     {this.state.contractHash ?
-                        <h5>Click on the contract-transaction hash to view details</h5>: null}
+                        <h6>Details of your contract</h6>: null}
                     {this.state.contractHash.map(contract =>
                         <Col>
                             <CardGroup style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
@@ -59,7 +60,12 @@ class ContractHistory extends Component {
                                         <Card key={contract.contract_id}/>
                                         <Col md="8">
                                             <CardBody>
-                                                <CardTitle>
+                                                <CardTitle>Permitted Companies: {contract.allowedCompanies}</CardTitle>
+                                                <CardTitle>Permitted Data: {contract.allowedData}</CardTitle>
+                                                <CardTitle>Purpose: {contract.allowedPurpose}</CardTitle>
+                                                <CardTitle>Reward: {contract.allowedReward}</CardTitle>
+                                                <CardTitle>Conditions set: {contract.allowedCondition}</CardTitle>
+                                                <CardTitle>Click on the hash to view details on the blockchain <br/>
                                                     <a href={'https://ropsten.etherscan.io/tx/'+contract.contractHash}>
                                                         {contract.contractHash}
                                                     </a>
@@ -72,7 +78,7 @@ class ContractHistory extends Component {
                         </Col>
                     )}
                 </div>
-            </>
+            </div>
         );
 
     }

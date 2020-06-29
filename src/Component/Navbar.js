@@ -24,19 +24,19 @@ class NavbarHead extends React.Component {
     super(props);
     this.state = {
       user: new User('', '','','',''),
-      isOpen: false,
+      //isOpen: false,
       isLoggedIn:false,
       message:''
     };
     this.handleLoginClick=this.handleLoginClick.bind(this);
     this.handleLogoutClick=this.handleLogoutClick.bind(this);
-    this.toggle = this.toggle.bind(this);
+    //this.toggle = this.toggle.bind(this);
   }
-  toggle() {
+  /*toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  };
+  };*/
   handleLoginClick(){
     this.setState({isLoggedIn:true})
     //this.props.history.push('/login')
@@ -62,8 +62,6 @@ class NavbarHead extends React.Component {
               <NavbarBrand href="/" className="icons">
                 <h5>Sask Shopping cart</h5>
               </NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
-              {/*<Collapse isOpen={this.state.isOpen} navbar>*/}
                 <Nav className="ml-auto" navbar>
                   <UncontrolledDropdown nav inNavbar className="m-auto">
                     <DropdownToggle nav caret className="m-auto">

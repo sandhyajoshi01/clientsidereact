@@ -1,19 +1,25 @@
 import React, {Component} from "react";
+import {Fragment} from "react";
 import {
     MDBContainer,
     MDBRow,
     MDBCol,
     MDBCard,
     MDBCardBody,
-    MDBBadge,
+    MDBIcon,
     MDBBtn,
     MDBInput
 } from "mdbreact";
+import {Modal, ModalBody} from "reactstrap";
 import UserService from '../Service/UserService';
 import {User} from '../Models/UserModel';
 import {Contracts} from "../Models/Contracts";
 import Web3 from "web3";
 import NavbarHead from "./Navbar";
+import './Navbar.css';
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
 console.log("web3", web3)
@@ -119,12 +125,37 @@ class usercontrol extends Component {
             cartContract: '',
             successMessage: '',
             accounts: '',
-            transactionHash: ''
+            transactionHash: '',
+            modalComp:false,
+            modalData: false,
+            modalPurpose:false,
+            modalReward:false,
+            modalCondition:false
         };
         this.handleChange = this.handleChange.bind(this);
         this.setNameContract = this.setNameContract.bind(this);
         this.saveContract=this.saveContract.bind(this);
+        this.toggleComp=this.toggleComp.bind(this);
+        this.toggleData=this.toggleData.bind(this);
+        this.togglePurpose=this.togglePurpose.bind(this);
+        this.toggleReward=this.toggleReward.bind(this);
+        this.toggleCondition=this.toggleCondition.bind(this);
 
+    }
+    toggleComp(){
+        this.setState({modalComp:!this.state.modalComp})
+    }
+    toggleData(){
+        this.setState({modalData:!this.state.modalData})
+    }
+    togglePurpose(){
+        this.setState({modalPurpose:!this.state.modalPurpose})
+    }
+    toggleReward(){
+        this.setState({modalReward:!this.state.modalReward})
+    }
+    toggleCondition(){
+        this.setState({modalCondition:!this.state.modalCondition})
     }
     //user and contract models have permissions in common
     handleChange(e) {
@@ -202,24 +233,28 @@ class usercontrol extends Component {
 
     }
 
+
+
     render() {
 
         const {submitted, errorMessage, successMessage} = this.state;
         const user = this.state.currentUser;
         return (
-            <>
-            <div><NavbarHead/></div>
+            <div className="container" backgroundColor="text-muted">
+                <div><NavbarHead/></div>
             <MDBContainer>
                 <MDBRow>
                     <MDBCol md="6">
                         <MDBCard>
-                            <div className="header pt-3 grey lighten-2">
+                            {/*header pt-3 grey lighten-2*/}
+                            {/*<div className="alert alert-info">*/}
+                                <div className="header pt-3 grey lighten-2">
                                 <MDBRow className="d-flex justify-content-start">
-                                    <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
-                                        This allows users to decide which of the users' data can be shared, which
-                                        companies can access user data under what condition,
+                                    <h5 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
+                                        This allows you to decide which of your data can be shared, which
+                                        companies can access your data under what condition,
                                         for what declared purposes and in exchange of what.
-                                    </h3>
+                                    </h5>
                                 </MDBRow>
                             </div>
                             {errorMessage &&
@@ -228,12 +263,29 @@ class usercontrol extends Component {
                             </div>
                             }
 
-                            <MDBCardBody className="mx-4 mt-4">
+                            <MDBCardBody className="mx-4 mt-4" >
                                 <div className={'form-group' + (submitted && user.allowedCompanies ? 'has-error' : '')}>
+                                    <FontAwesomeIcon icon={faInfoCircle} size="lg" onClick={this.toggleComp}
+                                                     style={{marginLeft: "475px", position:"absolute"}} />
 
                                     <MDBInput label="Allowed Companies" group type="text"
                                               name="allowedCompanies" value={user.allowedCompanies}
                                               onChange={(e) => this.handleChange(e)}/>
+
+                                        <div>
+                                            <Modal isOpen={this.state.modalComp} toggle={this.toggleComp} >
+                                                <ModalBody>
+                                                Enter the companies from the list that you allow to share data with
+                                                    (use comma to separate) :
+                                                <br/>
+                                                Event & Entertainment Enterprise<br/>
+                                                Technology Enterprise<br/>
+                                                Eco Enterprise<br/>
+                                                Investor Enterprise<br/>
+                                                MetaSecurity Enterprise<br/>
+                                            </ModalBody>
+                                        </Modal>
+                                    </div>
                                     {submitted && !user.allowedCompanies &&
                                     <div className="alert alert-danger" role="alert">Allowed Companies is required
                                     </div>
@@ -241,40 +293,88 @@ class usercontrol extends Component {
                                 </div>
 
                                 <div className={'form-group' + (submitted && user.allowedData ? 'has-error' : '')}>
-
+                                    <FontAwesomeIcon icon={faInfoCircle} size="lg" onClick={this.toggleData}
+                                                     style={{marginLeft: "475px", position:"absolute"}}/>
                                     <MDBInput label="Allowed Data" group type="text"
                                               name="allowedData" value={user.allowedData}
                                               onChange={(e) => this.handleChange(e)}/>
+                                    <div>
+                                        <Modal isOpen={this.state.modalData} toggle={this.toggleData} >
+                                            <ModalBody>
+                                                Enter the type of data from the list that you allow to share (use comma to separate) :
+                                                <br/>
+                                                Purchase History<br/>
+                                                Profile Data<br/>
+                                            </ModalBody>
+                                        </Modal>
+                                    </div>
                                     {submitted && !user.allowedData &&
                                     <div className="alert alert-danger" role="alert">Data is required
                                     </div>
                                     }
                                 </div>
                                 <div className={'form-group' + (submitted && user.allowedPurpose ? 'has-error' : '')}>
+                                    <FontAwesomeIcon icon={faInfoCircle} size="lg" onClick={this.togglePurpose}
+                                                     style={{marginLeft: "475px", position:"absolute"}}/>
 
                                     <MDBInput label="Allowed Purpose" group type="text"
                                               name="allowedPurpose" value={user.allowedPurpose}
                                               onChange={(e) => this.handleChange(e)}/>
+                                    <div>
+                                        <Modal isOpen={this.state.modalPurpose} toggle={this.togglePurpose} >
+                                            <ModalBody>
+                                                Enter the purpose from the list for sharing data (use comma to separate) :
+                                                <br/>
+                                                Personalization<br/>
+                                                User Modeling<br/>
+                                                Research<br/>
+                                                Advertisement<br/>
+                                            </ModalBody>
+                                        </Modal>
+                                    </div>
                                     {submitted && !user.allowedPurpose &&
                                     <div className="alert alert-danger" role="alert">Purposes are required
                                     </div>
                                     }
                                 </div>
                                 <div className={'form-group' + (submitted && user.allowedReward ? 'has-error' : '')}>
-
+                                    <FontAwesomeIcon icon={faInfoCircle} size="lg" onClick={this.toggleReward}
+                                                     style={{marginLeft: "475px", position:"absolute"}}/>
                                     <MDBInput label="Allowed Reward" group type="text"
                                               name="allowedReward" value={user.allowedReward}
                                               onChange={(e) => this.handleChange(e)}/>
+                                    <div>
+
+                                        <Modal isOpen={this.state.modalReward} toggle={this.toggleReward} >
+                                            <ModalBody>
+                                                Enter the payment as reward for allowing to use your data
+                                                <br/>
+                                                Use the following format:
+                                                4 ETH per access<br/>
+                                            </ModalBody>
+                                        </Modal>
+                                    </div>
                                     {submitted && !user.allowedReward &&
                                     <div className="alert alert-danger" role="alert">Reward is required
                                     </div>
                                     }
                                 </div>
                                 <div className={'form-group' + (submitted && user.allowedCondition ? 'has-error' : '')}>
-
+                                    <FontAwesomeIcon icon={faInfoCircle} size="lg" onClick={this.toggleCondition}
+                                                     style={{marginLeft: "475px", position:"absolute"}}/>
                                     <MDBInput label="Allowed Condition" group type="text"
                                               name="allowedCondition" value={user.allowedCondition}
                                               onChange={(e) => this.handleChange(e)}/>
+                                    <div>
+                                        <Modal isOpen={this.state.modalCondition} toggle={this.toggleCondition} >
+                                            <ModalBody>
+                                                Enter the conditions you allow to share data under (use comma to separate) :
+                                                <br/>
+                                                Deposit Ether directly into account<br/>
+                                                Or create your own
+                                            </ModalBody>
+                                        </Modal>
+                                    </div>
                                     {submitted && !user.allowedCondition &&
                                     <div className="alert alert-danger" role="alert">Conditions are required
                                     </div>
@@ -284,7 +384,7 @@ class usercontrol extends Component {
                                     {this.state.transactionHash ?
                                         <MDBContainer>
                                             {/*<MDBBtn color="#ffcdd2">Transaction Hash in blockchain:</MDBBtn>*/}
-                                            Transaction Hash in blockchain <br/>
+                                            Contract Deployed! <br/>Transaction Hash in blockchain <br/>
                                             <a href={'https://ropsten.etherscan.io/tx/' + this.state.transactionHash}>{this.state.transactionHash}
                                             </a>
                                         </MDBContainer>
@@ -308,7 +408,7 @@ class usercontrol extends Component {
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
-                </>
+                </div>
         );
     };
 };

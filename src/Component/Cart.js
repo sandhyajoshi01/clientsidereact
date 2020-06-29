@@ -75,7 +75,7 @@ class Cart extends Component {
                                     <CardBody style={{width: "40rem"}} key={itemincart.product_ID}>
                                         <CardTitle>{itemincart.proName}</CardTitle>
                                         <CardTitle>{itemincart.proBrand}</CardTitle>
-                                        <CardSubtitle>{itemincart.proPrice*0.0031} Eth</CardSubtitle>
+                                        <CardSubtitle>{Math.round((itemincart.proPrice*0.0031)*100)/100} ETH</CardSubtitle>
                                         <div>
                                             <input type="number" value={this.state.inputValue}
                                                    onChange={this._handleUpdate}
@@ -86,7 +86,7 @@ class Cart extends Component {
                                         </div>
                                         <div>
                                             <h6>SubTotal:{Totalforitem =
-                                                (this.state.inputValue * itemincart.proPrice*0.0031)} Eth </h6>
+                                                Math.round((this.state.inputValue * itemincart.proPrice*0.0031)*100)/100} ETH </h6>
                                             <h6><Button outline color="secondary"
                                                         onClick={()=>this.props.removeFromCart(itemincart)}>Remove</Button></h6>
                                         </div>
@@ -99,8 +99,11 @@ class Cart extends Component {
                             </div>))
                         }
                         <div className="commonContainer" >
-                            {AllTotal>0?<h4>Total: {AllTotal.toFixed(3)} Eth</h4>:null}
+                            {console.log(Math.round(3.07*2*100)/100)}
+                            {AllTotal>0?
+                                <h4>Total: {Math.round(AllTotal*100)/100} ETH</h4> :null}
                             <Button outline color="secondary" onClick={()=>this.props.totalPrice(AllTotal)}> Confirm purchase </Button>
+
                         </div>
                     </div>
                     }

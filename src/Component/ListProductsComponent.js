@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import {Card, Button, CardImg, CardTitle, CardSubtitle, CardBody, CardGroup} from 'reactstrap';
 import {Row, Col} from 'react-flexbox-grid';
 import UserService from '../Service/UserService';
-import SearchBar from './SearchProduct';
 import {withRouter} from 'react-router-dom';
 import Cart from './Cart'
 import checkout from "./Checkout";
 import {User} from "../Models/UserModel";
-import {count} from "rxjs/operators";
+
 
 class ListProductsComponent extends Component{
     constructor(props) {
@@ -175,7 +174,7 @@ class ListProductsComponent extends Component{
                             getQuantityForItem={this.getQuantityForItem}
                         />
 
-                        {this.state.cart.length>0 ?
+                        {this.state.Total>0 && this.state.cart.length>0?
                             <div>
                                 <div>
                                 <checkout cartprop={this.state.cart} totalPrice={this.state.Total}/>

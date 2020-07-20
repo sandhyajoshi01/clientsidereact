@@ -100,8 +100,7 @@ class login extends Component{
                     <FontAwesomeIcon icon={faKey} size="sm" />
                   <MDBInput
                     label="Password"
-                    group
-                    type="password"
+                    group type="password"
                     validate
                     containerClass="mb-0"
                     name="password" value={user.password}
@@ -111,7 +110,7 @@ class login extends Component{
                     </div>
                     }
 
-                  <p className="font-small grey-text d-flex justify-content-end">
+                  {/*<p className="font-small grey-text d-flex justify-content-end">
                     Forgot
                     <a
                       href="#!"
@@ -119,7 +118,7 @@ class login extends Component{
                     >
                       Password?
                     </a>
-                  </p>
+                  </p>*/}
                   </div>
                   <div className="text-center mb-4 mt-5">
                     <MDBBtn
@@ -138,6 +137,14 @@ class login extends Component{
                       className="dark-grey-text font-weight-bold ml-1"
                     >
                       Sign up
+                    </a>
+                  </p>
+                  <p className="font-small grey-text d-flex justify-content-center">
+                    <a
+                        href="./"
+                        className="dark-grey-text font-weight-bold ml-1"
+                    >
+                      Go to Home
                     </a>
                   </p>
                 </MDBCardBody>

@@ -15,7 +15,7 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: this.props.value,
+            inputValue: '',
             errorMessage:"",
             Total:0,
             id: this.props.match.params.id,
@@ -31,8 +31,10 @@ class Cart extends Component {
 
     //for the quantity part
     _handleUpdate(e){
-        if(e.target.value>0){this.setState({inputValue: e.target.value});}
+        if(e.target.value>0){this.setState({inputValue: e.target.value});
+            this.props.getQuantityForItem(e.target.value)}
         //this.props.getQuantityForItem(this.state.inputValue+1);
+
     }
 
 
@@ -79,7 +81,7 @@ class Cart extends Component {
                                         <div>
                                             <input type="number" value={this.state.inputValue}
                                                    onChange={this._handleUpdate}
-                                                   /*{()=>this.props.getQuantityForItem(this.state.inputValue,itemincart.product_ID)}*/
+
                                                    step="any"
                                                    placeholder="Quantity" style={{width: "100px"}}/>
 

@@ -13,7 +13,7 @@ class ListProductsComponent extends Component{
         super(props)
         this.state = {
             Products: [],
-            //quantity: 0,
+            quantity: 0,
             cart: [],
             checkoutButton: false,
             Message: null,
@@ -44,7 +44,8 @@ class ListProductsComponent extends Component{
         }
         else {
             //debugger
-            this.props.history.push('/checkout',{cartprop:this.state.cart,totalPrice:this.state.Total})
+            this.props.history.push('/checkout',{cartprop:this.state.cart,totalPrice:this.state.Total,
+                quantity:this.state.quantity})
         }
         /*let order = new Order(this.state.currentUser,this.state.cart)
         UserService.saveOrder(order)
@@ -101,7 +102,11 @@ class ListProductsComponent extends Component{
     totalPrice=(AllTotal)=>{
         this.setState({Total:AllTotal},()=>{console.log(this.state.Total)})
     }
-    getQuantityForItem = (quantity,productID) =>{
+    getQuantityForItem = (quantity)=>{
+        this.setState({quantity:quantity})
+    }
+
+    /*getQuantityForItem = (quantity,productID) =>{
         //debugger
         //this.setState({quantity:quantity});
         //this.state.cart.slice(-1).quantity=quantity;
@@ -118,7 +123,7 @@ class ListProductsComponent extends Component{
             return {cart: cart};
         });
 
-    }
+    }*/
     /*pushtocart(quantity){
         this.state.cart.push({...this.state.cart,quantity})
     }*/

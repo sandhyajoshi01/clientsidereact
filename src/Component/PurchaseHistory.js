@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {
-    Card,CardBody,
-    CardTitle, CardSubtitle,CardGroup
+    Card, CardBody,
+    CardTitle, CardSubtitle, CardGroup, CardImg
 } from 'reactstrap';
 import UserService from "../Service/UserService";
 import {Col, Row} from "react-flexbox-grid";
@@ -12,10 +12,6 @@ import './Navbar.css';
 class PurchaseHistory extends Component {
     constructor(props) {
         super(props);
-        if(!UserService.currentUserValue){
-            this.props.history.push('/');
-            return;
-        }
         this.state = {
             message: "",
             currentUser: UserService.currentUserValue,
@@ -25,10 +21,16 @@ class PurchaseHistory extends Component {
     }
 
     componentDidMount() {
+        if(!UserService.currentUserValue){
+            this.props.history.push('/login');
+            return;
+        }
         this.getTransactions()
     }
 
     getTransactions(){
+
+        debugger
         const userid = this.state.currentUser.user_id
         UserService.getAllTransactionHash(userid)
             .then(
@@ -59,6 +61,16 @@ class PurchaseHistory extends Component {
                                     <Card key={transaction.trid}/>
                                     <Col md="8">
                                         <CardBody>
+                                            <Col md="4">
+                                                <CardImg top width="100%" src={transaction.product.proImageURL} alt={transaction.product.proName}
+                                                         style={{maxHeight: "350px"}}/>
+
+                                                {/*<Card key={Product.product_ID}/>*/}
+                                            </Col>
+                                            <CardTitle>{transaction.product.proName}</CardTitle>
+                                            <CardSubtitle>Price: {(transaction.product.proPrice *0.0031).toFixed(2)} ETH </CardSubtitle>
+                                            <CardTitle>Quantity: {transaction.proQuantity}</CardTitle>
+                                            <CardTitle>Total Price: {transaction.totalPrice} ETH </CardTitle>
                                             <CardTitle>
                                                 <a href={'https://ropsten.etherscan.io/tx/'+transaction.transactionHash}>
                                                     {transaction.transactionHash}

@@ -158,6 +158,15 @@ class signup extends Component{
                        Login
                       </a>
                     </p>
+                      <p className="font-small grey-text d-flex justify-content-center">
+
+                          <a
+                              href="./"
+                              className="dark-grey-text font-weight-bold ml-1"
+                          >
+                              Go to Home
+                          </a>
+                      </p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>

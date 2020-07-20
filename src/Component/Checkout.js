@@ -12,7 +12,7 @@ class checkout extends Component{
         super(props);
         this.state={
             user: new User(),
-            //products: this.props.product,
+            product:'',
             submitted : false,
             errorMessage:'',
             id: this.props.match.params.id,
@@ -44,6 +44,9 @@ class checkout extends Component{
             const accounts = await web3.eth.getAccounts()
             // const accounts = await web3.eth.accounts[0]
             this.setState({accounts:accounts[0]})
+            debugger
+            const cartprop = this.props.location.state.cartprop
+            cartprop.map(item => {this.setState({product:item}) })
         })
 
         UserService.currentUser.subscribe(data => {
@@ -65,6 +68,8 @@ class checkout extends Component{
         if (!(user.firstname && user.lastname && user.billingAddress && user.etherAddress)) {
             return;
         }
+
+        console.log("product id", this.state.product_ID)
         const paymentAddress="0x5378fa11529725cCC491bB6708f9E2F06a1639d5";
         const amtToPay= this.props.location.state.totalPrice;
         this.state.web3InUse.eth.sendTransaction({
@@ -79,7 +84,12 @@ class checkout extends Component{
             } else {
                 this.setState({ethereumMessage:"Payment succeessful!"})
                 console.log('Payment successful', transactionId)
-                const transaction = new Transaction(user,transactionId)
+                debugger
+                //const product_ID = cartprop.map(item => {return item.product_ID}).slice(0) this doesn't work
+                //you need to store it to state object and calling then after
+                const quantityProp = this.props.location.state.quantity;
+                const transaction = new Transaction(user,this.state.product,quantityProp,
+                     amtToPay, transactionId)
                 UserService.buyProducts(transaction)
                     .then(
                         data => {

@@ -12,10 +12,7 @@ import './Navbar.css';
 class ContractHistory extends Component {
     constructor(props) {
         super(props);
-        if(!UserService.currentUserValue){
-            this.props.history.push('/');
-            return;
-        }
+
         this.state = {
             message: "",
             currentUser: UserService.currentUserValue,
@@ -25,6 +22,10 @@ class ContractHistory extends Component {
     }
 
     componentDidMount() {
+        if(!UserService.currentUserValue){
+            this.props.history.push('/login');
+            return;
+        }
         this.getContractHash()
     }
 

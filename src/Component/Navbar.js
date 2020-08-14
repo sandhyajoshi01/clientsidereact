@@ -16,7 +16,8 @@ import {
 import './Navbar.css';
 import UserService from "../Service/UserService";
 import {User} from "../Models/UserModel";
-import login from "./Login";
+import Cart from "./Cart";
+
 
 
 class NavbarHead extends React.Component {
@@ -28,7 +29,7 @@ class NavbarHead extends React.Component {
       isLoggedIn:false,
       message:''
     };
-    this.handleLoginClick=this.handleLoginClick.bind(this);
+    //this.handleLoginClick=this.handleLoginClick.bind(this);
     this.handleLogoutClick=this.handleLogoutClick.bind(this);
     //this.toggle = this.toggle.bind(this);
   }
@@ -37,10 +38,7 @@ class NavbarHead extends React.Component {
       isOpen: !this.state.isOpen
     });
   };*/
-  handleLoginClick(){
-    this.setState({isLoggedIn:true})
-    //this.props.history.push('/login')
-  }
+
   handleLogoutClick(){
     const {user} =this.state.user;
     UserService.logoutUser(user)
@@ -50,51 +48,63 @@ class NavbarHead extends React.Component {
               this.setState({ message: "You are logged out.",isLoggedIn:false});
             }
         );
-
   }
+    componentDidMount() {
+        if(UserService.currentUserValue){
+            this.setState({isLoggedIn:true,user:UserService.currentUserValue})
+        }
+    }
+    cart(){
+    return this.props.cart
+    }
+
   render(){
     const isLoggedIn =this.state.isLoggedIn;
-    //console.log(isLoggedIn)
     return (
         <>
-          <div>
-            <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="md">
+          <div style={{position:'fixed',zIndex:100,width:"87%"}}>
+            <Navbar style={{backgroundColor: '#ffcdd2'}} light expand="lg">
               <NavbarBrand href="/" className="icons">
                 <h5>Sask Shopping cart</h5>
               </NavbarBrand>
                 <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <NavLink onClick={this.cart}>Cart</NavLink>
+                  </NavItem>
+                  <NavItem style={{marginTop:"8px",marginLeft:"5px"}}>{isLoggedIn? this.state.user.firstname.toUpperCase(): null}
+                  </NavItem>
+
                   <UncontrolledDropdown nav inNavbar className="m-auto">
                     <DropdownToggle nav caret className="m-auto">
                     </DropdownToggle>
-                    <DropdownMenu right className="ml-auto">
-                      {/*{!isLoggedIn ?*/}
-                          <div>
-
-                          <DropdownItem onClick={this.handleLoginClick} href="/login">
-                            Login
-                          </DropdownItem>
-                          <DropdownItem href="/signup">
-                            Sign-up
-                          </DropdownItem>
-                          </div>
-                        {/*:*/}
-                        <DropdownItem onClick={this.handleLogoutClick} href="/">
-                        Logout
-                        </DropdownItem>
-                      {/*}*/}
-
-
-                      <DropdownItem href="/usercontrol">
-                        Set Permission
-                      </DropdownItem>
-                      <DropdownItem href="/purchasehistory">
-                        User Purchase History
-                      </DropdownItem>
-                        <DropdownItem href="/contracthistory">
+                    <DropdownMenu>
+                        {!isLoggedIn ?
+                            <div>
+                                <DropdownItem href="/login" style={{marginRight:"10px"}}>
+                                    Login
+                                </DropdownItem>
+                                <DropdownItem href="/signup">
+                                    Sign-up
+                                </DropdownItem>
+                            </div>
+                            :
+                            <div>
+                            <DropdownItem href="/usercontrol">
+                            Set Permissions
+                            </DropdownItem>
+                            <DropdownItem href="/purchasehistory">
+                            User Purchase History
+                            </DropdownItem>
+                            <DropdownItem href="/contracthistory">
                             View Contract History
-                        </DropdownItem>
-                      <DropdownItem divider />
+                            </DropdownItem>
+                            <DropdownItem onClick={this.handleLogoutClick} href="/">
+                                    Logout
+                             </DropdownItem>
+                            </div>
+                        }
                     </DropdownMenu>
+
                   </UncontrolledDropdown>
                 </Nav>
               {/*</Collapse>*/}

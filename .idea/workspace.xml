@@ -3,18 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7fc2fee1-4dac-48b0-9e4e-e59178744c7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Carousel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Checkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/ContractHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ContractHistory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/ListProductsComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/LoginControl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/PurchaseHistory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/UserControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/UserControl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Transaction.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +151,13 @@
       <workItem from="1593133901264" duration="2573000" />
       <workItem from="1593299837182" duration="8979000" />
       <workItem from="1593313443477" duration="40365000" />
-      <workItem from="1595269202032" duration="13769000" />
+      <workItem from="1595269202032" duration="14618000" />
+      <workItem from="1595369196751" duration="4344000" />
+      <workItem from="1595458721432" duration="13356000" />
+      <workItem from="1595639943532" duration="588000" />
+      <workItem from="1595882670516" duration="2485000" />
+      <workItem from="1595976531839" duration="2202000" />
+      <workItem from="1596051969120" duration="604000" />
     </task>
     <servers />
   </component>

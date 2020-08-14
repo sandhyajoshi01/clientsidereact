@@ -6,6 +6,18 @@ import ListProductsComponent from './ListProductsComponent';
 import Footer from './Footer';
 
 class Home extends Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            cart:[]
+        }
+        this.getCart=this.getCart.bind(this)
+    }
+
+    getCart(cart){
+        this.setState({cart:cart})
+
+    }
 
         render() {
            return (
@@ -15,7 +27,7 @@ class Home extends Component{
                <div className="container">
                <NavbarHead/>
                <Carousel/>
-               <ListProductsComponent/>
+               <ListProductsComponent cart={this.getCart}/>
                <Footer/>
 
                 </div>

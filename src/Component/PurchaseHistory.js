@@ -29,8 +29,6 @@ class PurchaseHistory extends Component {
     }
 
     getTransactions(){
-
-        debugger
         const userid = this.state.currentUser.user_id
         UserService.getAllTransactionHash(userid)
             .then(
@@ -53,17 +51,19 @@ class PurchaseHistory extends Component {
                 <div className="alert alert-info">
                 {this.state.transactions ?
                     <h6>Click on the purchase-transaction hash to view details</h6>: null}
+                    <Row>
                 {this.state.transactions.map(transaction =>
                     <Col>
-                        <CardGroup style={{marginTop: "10px", marginBottom: "10px", marginRight: "10px"}}>
-                            <Card style={{width: "20rem"}}>
+                        <CardGroup style={{marginTop: "10px", marginBottom: "10px", marginRight: "10px",
+                            maxWidth:"40rem",height:"28rem"}}>
+                            <Card style={{maxWidth: "23rem"}}>
                                 <Row className="ProductContainer">
                                     <Card key={transaction.trid}/>
                                     <Col md="8">
                                         <CardBody>
                                             <Col md="4">
                                                 <CardImg top width="100%" src={transaction.product.proImageURL} alt={transaction.product.proName}
-                                                         style={{maxHeight: "350px"}}/>
+                                                         style={{maxHeight: "200px", maxWidth:"300px"}}/>
 
                                                 {/*<Card key={Product.product_ID}/>*/}
                                             </Col>
@@ -73,7 +73,7 @@ class PurchaseHistory extends Component {
                                             <CardTitle>Total Price: {transaction.totalPrice} ETH </CardTitle>
                                             <CardTitle>
                                                 <a href={'https://ropsten.etherscan.io/tx/'+transaction.transactionHash}>
-                                                    {transaction.transactionHash}
+                                                    <h6>{transaction.transactionHash}</h6>
                                                     </a>
                                                 </CardTitle>
                                         </CardBody>
@@ -83,6 +83,7 @@ class PurchaseHistory extends Component {
                         </CardGroup>
                     </Col>
                 )}
+                    </Row>
             </div>
             </div>
         );

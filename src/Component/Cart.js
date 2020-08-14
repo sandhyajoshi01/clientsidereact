@@ -62,21 +62,14 @@ class Cart extends Component {
                     {cart.length === 0 ? "Your cart is empty!" : <div> {cart.length} items in your cart. </div>}
                     {cart.length > 0 &&
                     <div>
-                        {errorMessage &&
-                        <div className="alert alert-danger" role="alert">
-                            <strong> {errorMessage} </strong>
-                        </div>
-                        }
                         {cart.map(itemincart => (
-                            
                             <div>
                                 <Card style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
                                     <CardImg top width="50%" src={itemincart.proImageURL}
                                              alt={itemincart.proName}
-                                             style={{maxHeight: "200px", maxWidth: "200px"}}/>
+                                             style={{maxHeight: "200px", maxWidth: "100px"}}/>
                                     <CardBody style={{width: "40rem"}} key={itemincart.product_ID}>
                                         <CardTitle>{itemincart.proName}</CardTitle>
-                                        <CardTitle>{itemincart.proBrand}</CardTitle>
                                         <CardSubtitle>{Math.round((itemincart.proPrice*0.0031)*100)/100} ETH</CardSubtitle>
                                         <div>
                                             <input type="number" value={this.state.inputValue}

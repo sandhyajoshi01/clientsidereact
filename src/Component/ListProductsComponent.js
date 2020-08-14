@@ -15,7 +15,6 @@ class ListProductsComponent extends Component{
             Products: [],
             quantity: 0,
             cart: [],
-            checkoutButton: false,
             Message: null,
             Total:0,
             currentUser: new User()
@@ -40,23 +39,12 @@ class ListProductsComponent extends Component{
     }
     checkout(state, callback) {
         if (!this.state.currentUser) {
-            this.setState({Message: "You should login in to checkout"});
+            this.setState({Message: "Please log in to proceed."});
         }
         else {
-            //debugger
             this.props.history.push('/checkout',{cartprop:this.state.cart,totalPrice:this.state.Total,
                 quantity:this.state.quantity})
         }
-        /*let order = new Order(this.state.currentUser,this.state.cart)
-        UserService.saveOrder(order)
-            .then(
-                data=>{
-                    this.props.history.push('/checkout')
-                },
-                error => {
-                    this.setState({errorMessage: "Order not saved"})
-                }
-            )*/
     }
 
 
@@ -129,22 +117,19 @@ class ListProductsComponent extends Component{
     }*/
 
     render() {
-        const {cart}= this.state.cart;
         let {ether}=0;
         return (
             <>
-                <Row>
-                    {/*<SearchBar/>*/}
-                </Row>
+                <div style={{display:"flex", flexDirection:"row",marginLeft:"8px"}}>
                 <Row>
                     {this.state.Products.map(Product =>
                         <Col>
                             <CardGroup style={{marginTop: "20px", marginBottom: "20px", marginRight: "10px"}}>
-                                <Card style={{width: "30rem"}}>
+                                <Card style={{width: "27rem"}}>
                                     <Row className="ProductContainer">
                                         <Col md="4">
                                             <CardImg top width="100%" src={Product.proImageURL} alt={Product.proName}
-                                                     style={{maxHeight: "350px"}}/>
+                                                     style={{maxHeight: "300px"}}/>
 
                                             <Card key={Product.product_ID}/>
                                         </Col>
@@ -168,8 +153,9 @@ class ListProductsComponent extends Component{
                             </CardGroup>
                         </Col>
                     )}
+                </Row>
 
-                    <div className="col-md-3">
+                    <div className="col-md-3" style={{marginTop: "20px", marginBottom: "20px"}} >
                         {/*{this.state.cart.map(item=>(*/}
                         <Cart
                             cart={this.state.cart}
@@ -177,6 +163,7 @@ class ListProductsComponent extends Component{
                             removeFromCart = {this.removeFromCart}
                             totalPrice = {this.totalPrice}
                             getQuantityForItem={this.getQuantityForItem}
+                            errorMessage={this.state.Message}
                         />
 
                         {this.state.Total>0 && this.state.cart.length>0?
@@ -185,14 +172,19 @@ class ListProductsComponent extends Component{
                                 <checkout cartprop={this.state.cart} totalPrice={this.state.Total}/>
                                 </div>
                                 <h4><Button outline color="secondary" onClick={this.checkout}>Checkout</Button></h4>
-
+                                {this.state.Message &&
+                                <div className="alert alert-danger" role="alert">
+                                    <strong> {this.state.Message} </strong>
+                                </div>
+                                }
                             </div>
                             : null
 
                         }
                     </div>
+                </div>
 
-                </Row>
+
 
                     </>
                 )
